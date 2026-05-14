@@ -78,8 +78,16 @@ export default function About() {
               construcción de Data Warehouses.
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-10">
-              Actualmente trabajo en Concentrix como Especialista Apple Card. Cuento con inglés C1 certificado
-              y estoy listo para dar el siguiente paso en mi carrera dentro del mundo tech.
+              Cuento con inglés C1 certificado y estoy listo para dar el siguiente paso en mi carrera dentro del mundo tech.
+              Podés ver todos mis repositorios y proyectos en{' '}
+              <a
+                href="https://github.com/Sebasgonzalez26"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2 transition-colors"
+              >
+                github.com/Sebasgonzalez26
+              </a>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

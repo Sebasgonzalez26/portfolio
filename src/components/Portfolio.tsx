@@ -15,42 +15,42 @@ const projects: Project[] = [
     description:
       'Backend con .NET Core aplicando arquitectura limpia: Controller, Service, Repository, Data Access, Reglas y Abstracciones. Autenticación y autorización por roles. Validada con Postman.',
     tags: ['C#', '.NET Core', 'SQL Server', 'Postman', 'REST API'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
   },
   {
     title: 'Data Warehouse con Modelo Estrella',
     description:
       'Diseño e implementación de un Data Warehouse bajo modelo estrella. Procesos ETL con Pentaho Data Integration para extracción, transformación y carga de datos desde múltiples fuentes.',
     tags: ['Pentaho ETL', 'Data Warehouse', 'SQL Server', 'BI'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
   },
   {
     title: 'Dashboard de Análisis con Power BI',
     description:
       'Panel interactivo de visualización de datos con KPIs, filtros dinámicos y reportes ejecutivos. Conectado a base de datos SQL para análisis en tiempo real.',
     tags: ['Power BI', 'SQL Server', 'DAX', 'BI'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
   },
   {
     title: 'API REST con Node.js y MongoDB',
     description:
       'API REST desarrollada con Node.js e integrada con MongoDB para gestión de datos NoSQL. Incluye autenticación JWT, manejo de errores y documentación de endpoints.',
     tags: ['Node.js', 'MongoDB', 'JWT', 'REST API'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
   },
   {
     title: 'Deploy en Microsoft Azure',
     description:
       'Despliegue de aplicación backend en Microsoft Azure con control de versiones en GitHub. Configuración de entornos, variables y pipeline básico de CI/CD.',
     tags: ['Azure', 'Git / GitHub', 'DevOps', '.NET'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
   },
   {
     title: 'Portafolio Personal',
     description:
       'Este mismo sitio. Construido con React, TypeScript y Tailwind CSS. Diseño dark mode con acento cian, totalmente responsive y deployable en Vercel.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    github: 'https://github.com/',
+    github: 'https://github.com/Sebasgonzalez26',
     demo: '#',
   },
 ]
@@ -160,7 +160,7 @@ export default function Portfolio() {
         {/* GitHub CTA */}
         <div className="text-center mt-12">
           <a
-            href="https://github.com/"
+            href="https://github.com/Sebasgonzalez26"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-white/10 text-gray-400 hover:text-white hover:border-white/30 px-6 py-3 rounded-lg transition-all text-sm font-medium"

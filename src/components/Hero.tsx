@@ -75,7 +75,7 @@ export default function Hero() {
         {/* Social links */}
         <div className="flex justify-center gap-5">
           <a
-            href="https://github.com/"
+            href="https://github.com/Sebasgonzalez26"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-cyan-400 transition-colors"

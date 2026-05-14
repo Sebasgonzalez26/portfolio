@@ -13,8 +13,8 @@ const contactLinks = [
   {
     icon: GithubIcon,
     label: 'GitHub',
-    value: 'github.com/tu-usuario',
-    href: 'https://github.com/',
+    value: 'github.com/Sebasgonzalez26',
+    href: 'https://github.com/Sebasgonzalez26',
     isBrand: true,
   },
   {
