@@ -84,7 +84,7 @@ export default function Hero() {
             <GithubIcon size={22} />
           </a>
           <a
-            href="https://linkedin.com/in/"
+            href="https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-cyan-400 transition-colors"

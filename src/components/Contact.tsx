@@ -20,8 +20,8 @@ const contactLinks = [
   {
     icon: LinkedinIcon,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/tu-perfil',
-    href: 'https://linkedin.com/in/',
+    value: 'linkedin.com/in/sebastián-josué-gonzález',
+    href: 'https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297',
     isBrand: true,
   },
 ]
