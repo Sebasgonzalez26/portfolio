@@ -1,114 +1,138 @@
 import { ArrowDown, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons'
+import { useLanguage } from '../i18n/useLanguage'
+
+function HeroGraphic() {
+  const dots = Array.from({ length: 5 }, (_, row) =>
+    Array.from({ length: 5 }, (_, col) => ({ row, col })),
+  ).flat()
+
+  return (
+    <svg viewBox="0 0 400 440" className="w-full h-full" aria-hidden="true">
+      <circle cx="290" cy="110" r="120" fill="#AFE7FD" opacity="0.5" />
+      <rect
+        x="40"
+        y="210"
+        width="190"
+        height="190"
+        rx="28"
+        fill="#ECFE88"
+        opacity="0.55"
+        transform="rotate(-8 135 305)"
+      />
+      <circle cx="110" cy="90" r="46" stroke="#734BEB" strokeWidth="2.5" fill="none" />
+      <path
+        d="M180 250 L145 290 L180 330 M240 250 L275 290 L240 330"
+        stroke="#111111"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <g>
+        {dots.map(({ row, col }) => (
+          <circle
+            key={`${row}-${col}`}
+            cx={260 + col * 22}
+            cy={20 + row * 22}
+            r="3"
+            fill="#FF0089"
+            opacity={0.15 + (row + col) * 0.03}
+          />
+        ))}
+      </g>
+    </svg>
+  )
+}
 
 export default function Hero() {
-  const scrollToPortfolio = () => {
-    document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const { t } = useLanguage()
 
-  const scrollToContact = () => {
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden"
+      className="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden bg-paper"
     >
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(#22d3ee 1px, transparent 1px), linear-gradient(90deg, #22d3ee 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
+      <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
+        <div>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-purple mb-6">
+            {t.hero.eyebrow}
+          </p>
 
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+          <h1 className="font-display text-5xl md:text-7xl font-semibold text-ink mb-6 leading-[1.05]">
+            {t.hero.name}
+          </h1>
 
-      <div className="relative z-10 max-w-3xl">
-        {/* Status badge */}
-        <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm px-4 py-2 rounded-full mb-8 font-mono">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          Disponible para oportunidades laborales
+          <p className="text-xl md:text-2xl text-ink font-medium mb-6 max-w-xl">{t.hero.role}</p>
+
+          <p className="text-ink-soft text-base leading-relaxed mb-8 max-w-lg">
+            {t.hero.description}
+          </p>
+
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-ink-soft border border-ink/10 rounded-full px-4 py-2 mb-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
+            {t.hero.available}
+          </div>
+
+          <div className="flex flex-wrap gap-4 mb-10">
+            <button
+              onClick={() => scrollTo('#work')}
+              className="inline-flex items-center gap-2 bg-ink text-paper font-medium px-6 py-3 rounded-full hover:bg-accent-purple transition-colors duration-200"
+            >
+              {t.hero.ctaPrimary} ⟶
+            </button>
+            <button
+              onClick={() => scrollTo('#contact')}
+              className="inline-flex items-center gap-2 border border-ink/20 text-ink font-medium px-6 py-3 rounded-full hover:border-ink transition-colors duration-200"
+            >
+              {t.hero.ctaSecondary}
+            </button>
+          </div>
+
+          <div className="flex gap-5">
+            <a
+              href="https://github.com/Sebasgonzalez26"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-soft hover:text-ink transition-colors"
+              aria-label="GitHub"
+            >
+              <GithubIcon size={20} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-soft hover:text-ink transition-colors"
+              aria-label="LinkedIn"
+            >
+              <LinkedinIcon size={20} />
+            </a>
+            <a
+              href="mailto:jg1829016@gmail.com"
+              className="text-ink-soft hover:text-ink transition-colors"
+              aria-label="Email"
+            >
+              <Mail size={20} />
+            </a>
+          </div>
         </div>
 
-        {/* Greeting */}
-        <p className="text-gray-400 text-lg mb-3 font-mono">
-          Hola, soy
-        </p>
-
-        {/* Name */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
-          <span className="gradient-text">Sebastián González</span>
-        </h1>
-
-        {/* Role */}
-        <h2 className="text-xl md:text-2xl text-gray-300 font-medium mb-6">
-          Ingeniería en Sistemas · Backend & Data Engineering
-        </h2>
-
-        {/* Description */}
-        <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-          Estudiante avanzado con experiencia en desarrollo backend con <span className="text-white">C# (.NET)</span> y <span className="text-white">Node.js</span>,
-          construcción de APIs REST, ingeniería de datos con <span className="text-white">Pentaho ETL</span> y análisis con <span className="text-white">Power BI</span>.
-          Orientado a generar valor real a partir de los datos.
-        </p>
-
-        {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <button
-            onClick={scrollToPortfolio}
-            className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-200 hover:scale-105"
-          >
-            Ver proyectos
-          </button>
-          <button
-            onClick={scrollToContact}
-            className="border border-cyan-500/40 text-cyan-400 hover:border-cyan-400 hover:bg-cyan-500/5 font-semibold px-8 py-3 rounded-lg transition-all duration-200"
-          >
-            Contáctame
-          </button>
-        </div>
-
-        {/* Social links */}
-        <div className="flex justify-center gap-5">
-          <a
-            href="https://github.com/Sebasgonzalez26"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-cyan-400 transition-colors"
-            aria-label="GitHub"
-          >
-            <GithubIcon size={22} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-cyan-400 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <LinkedinIcon size={22} />
-          </a>
-          <a
-            href="mailto:jg1829016@gmail.com"
-            className="text-gray-500 hover:text-cyan-400 transition-colors"
-            aria-label="Email"
-          >
-            <Mail size={22} />
-          </a>
+        <div className="hidden md:block relative h-96">
+          <HeroGraphic />
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <button
-        onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-10 text-gray-600 hover:text-cyan-400 transition-colors animate-bounce"
+        onClick={() => scrollTo('#currently')}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ink-faint hover:text-ink transition-colors"
         aria-label="Scroll down"
       >
-        <ArrowDown size={20} />
+        <ArrowDown size={18} />
       </button>
     </section>
   )

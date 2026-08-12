@@ -9,7 +9,7 @@ import { LanguageProvider } from './i18n/LanguageContext'
 function App() {
   return (
     <LanguageProvider>
-      <div className="bg-[#0f0f0f] min-h-screen">
+      <div className="bg-paper min-h-screen">
         <Navbar />
         <main>
           <Hero />
