@@ -8,6 +8,11 @@
   scroll-behavior: smooth;
 }
 
+/* Keep section headings clear of the fixed navbar when jumping via nav links. */
+html {
+  scroll-padding-top: 7rem;
+}
+
 body {
   margin: 0;
   background-color: #000000;

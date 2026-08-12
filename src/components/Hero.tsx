@@ -17,31 +17,30 @@ export default function Hero() {
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
 
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+      <div className="relative z-10 h-full w-full px-6 sm:px-10 lg:px-16 flex flex-col">
         {/* Top section */}
-        <div className="pt-28 md:pt-32 grid gap-6 lg:grid-cols-2">
-          <p className="text-white/80 text-sm md:text-base max-w-md">
-            We deliver transformative programs that empower emerging product designers with
-            cutting-edge expertise and vision to thrive globally.
-          </p>
+        <div className="pt-28 md:pt-32 flex justify-end">
           <p className="text-white/80 text-sm md:text-base lg:text-right">
-            8000+ Talented Designers Launched !
+            Un sistema en producción, usado a diario por un negocio real.
           </p>
         </div>
 
         {/* Hero center */}
         <div className="flex-1 flex flex-col items-center justify-center text-center pb-16">
           <p className="uppercase text-white/80 text-xs md:text-sm tracking-tight mb-4 md:mb-6">
-            Seats for Next Program Opening Soon
+            Construyo software real que resuelve problemas reales
           </p>
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.85] tracking-tighter">
-            <span className="block text-white font-medium">Become</span>
-            <ShinyText text="Product Leader." className="block" />
+            <span className="block text-white font-medium">Sebastián</span>
+            <ShinyText text="González Rojas" className="block" />
           </h1>
 
-          <button className="group mt-8 md:mt-12 inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base transition-colors">
-            Apply for Next Enrollment
+          <button
+            onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group mt-8 md:mt-12 inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base transition-colors"
+          >
+            Ver lo que estoy construyendo
             <ArrowRight
               size={18}
               className="transition-transform duration-300 group-hover:translate-x-1"
