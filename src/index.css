@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,8 +10,8 @@
 
 body {
   margin: 0;
-  background-color: #0f0f0f;
-  color: #e5e7eb;
+  background-color: #ffffff;
+  color: #111111;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -20,28 +20,18 @@ body {
   min-height: 100vh;
 }
 
+::selection {
+  background-color: #2ac4ea;
+  color: #111111;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0f0f;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #22d3ee;
+  background: #111111;
   border-radius: 3px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #22d3ee, #818cf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(34, 211, 238, 0.1);
 }

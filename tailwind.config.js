@@ -3,23 +3,26 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      colors: {
+        paper: '#FFFFFF',
+        'paper-soft': '#FAFAFA',
+        ink: '#111111',
+        'ink-soft': '#6B6B6B',
+        'ink-faint': '#9A9A9A',
+        'near-black': '#0A0A0A',
+        accent: {
+          cyan: '#2AC4EA',
+          pink: '#FF0089',
+          purple: '#734BEB',
+          coral: '#FF455A',
+          lime: '#ECFE88',
+          sky: '#AFE7FD',
+        },
+      },
       fontFamily: {
+        display: ['"Space Grotesk"', 'sans-serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"Fira Code"', 'monospace'],
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.6s ease-out forwards',
-        'slide-up': 'slideUp 0.6s ease-out forwards',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
     },
   },
