@@ -37,6 +37,7 @@ export interface Translation {
     heading: string
     paragraph: string
     linkText: string
+    paragraphEnd: string
   }
   capabilities: {
     eyebrow: string
@@ -108,6 +109,8 @@ export const translations: Record<Language, Translation> = {
       paragraph:
         'Estoy en el último tramo de Ingeniería en Sistemas en la Universidad Fidélitas, mientras trabajo en soporte financiero en Concentrix (equipo Goldman Sachs / Apple Card). En paralelo construí y mantengo',
       linkText: "David's Bakery",
+      paragraphEnd:
+        ', un sistema de gestión que un negocio real usa todos los días para reemplazar hojas de cálculo y cuadernos.',
     },
     capabilities: {
       eyebrow: 'CAPACIDADES',
@@ -220,6 +223,8 @@ export const translations: Record<Language, Translation> = {
       paragraph:
         "I'm in the final stretch of my Systems Engineering degree at Universidad Fidélitas, while working financial support at Concentrix (Goldman Sachs / Apple Card team). Alongside that I built and maintain",
       linkText: "David's Bakery",
+      paragraphEnd:
+        ', a management system a real business uses every day to replace spreadsheets and notebooks.',
     },
     capabilities: {
       eyebrow: 'CAPABILITIES',
