@@ -1,6 +1,8 @@
+import { motion } from 'framer-motion'
 import { ArrowUpRight, Code2, Database, Layers, BarChart3 } from 'lucide-react'
 import { GithubIcon } from './icons/SocialIcons'
 import { useLanguage } from '../i18n/useLanguage'
+import Reveal from './Reveal'
 
 const tagColors = [
   'border-accent-cyan/30 text-accent-cyan',
@@ -64,8 +66,9 @@ export default function Portfolio() {
         </h2>
 
         {/* Featured project */}
-        <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center mb-20">
-          <BakeryPreview />
+        <Reveal className="mb-20">
+          <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <BakeryPreview />
 
           <div>
             <h3 className="font-display text-2xl font-semibold text-ink mb-1">{featured.title}</h3>
@@ -104,7 +107,8 @@ export default function Portfolio() {
               </a>
             </div>
           </div>
-        </div>
+          </div>
+        </Reveal>
 
         {/* Other things I've built */}
         <h3 className="font-display text-xl font-semibold text-ink mb-6">
@@ -114,13 +118,19 @@ export default function Portfolio() {
           {t.projects.otherItems.map((item, i) => {
             const Icon = otherIcons[i % otherIcons.length]
             return (
-              <div key={item.title} className="border border-ink/10 rounded-xl p-5 bg-paper-soft">
-                <div className="p-2 bg-paper rounded-lg border border-ink/10 w-fit mb-3">
-                  <Icon size={16} className="text-ink" />
-                </div>
-                <p className="text-ink font-medium text-sm mb-1">{item.title}</p>
-                <p className="text-ink-soft text-xs leading-relaxed">{item.description}</p>
-              </div>
+              <Reveal key={item.title} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  transition={{ duration: 0.2 }}
+                  className="border border-ink/10 rounded-xl p-5 bg-paper-soft h-full"
+                >
+                  <div className="p-2 bg-paper rounded-lg border border-ink/10 w-fit mb-3">
+                    <Icon size={16} className="text-ink" />
+                  </div>
+                  <p className="text-ink font-medium text-sm mb-1">{item.title}</p>
+                  <p className="text-ink-soft text-xs leading-relaxed">{item.description}</p>
+                </motion.div>
+              </Reveal>
             )
           })}
         </div>

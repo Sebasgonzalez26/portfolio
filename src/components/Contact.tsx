@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Mail, Send, MapPin, CheckCircle } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons'
 import { useLanguage } from '../i18n/useLanguage'
+import Reveal from './Reveal'
 
 export default function Contact() {
   const { t } = useLanguage()
@@ -52,7 +53,7 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left: info */}
-          <div>
+          <Reveal>
             <div className="flex items-center gap-2 text-ink-soft text-sm mb-8">
               <MapPin size={15} className="text-accent-purple" />
               <span>{t.contact.location}</span>
@@ -84,10 +85,10 @@ export default function Contact() {
               </p>
               <p className="text-ink-soft text-sm leading-relaxed">{t.contact.availability}</p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: form */}
-          <div>
+          <Reveal delay={0.1}>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-ink-soft text-sm mb-2">
@@ -154,7 +155,7 @@ export default function Contact() {
                 )}
               </button>
             </form>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

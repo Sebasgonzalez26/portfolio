@@ -1,5 +1,6 @@
 import { ArrowUpRight, GraduationCap, Award } from 'lucide-react'
 import { useLanguage } from '../i18n/useLanguage'
+import Reveal from './Reveal'
 
 const chipColors = [
   'border-accent-cyan/30 text-accent-cyan',
@@ -17,7 +18,7 @@ export default function About() {
     <section id="currently" className="py-24 px-6 bg-paper-soft">
       <div className="max-w-5xl mx-auto">
         {/* Currently */}
-        <div className="mb-24">
+        <Reveal className="mb-24">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-cyan mb-4">
             {t.currently.eyebrow}
           </p>
@@ -37,10 +38,10 @@ export default function About() {
             </a>
             {t.currently.paragraphEnd}
           </p>
-        </div>
+        </Reveal>
 
         {/* Capabilities */}
-        <div className="mb-24">
+        <Reveal className="mb-24">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-pink mb-4">
             {t.capabilities.eyebrow}
           </p>
@@ -57,10 +58,10 @@ export default function About() {
               </span>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         {/* Education & certifications */}
-        <div>
+        <Reveal>
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-purple mb-4">
             {t.education.eyebrow}
           </p>
@@ -99,7 +100,7 @@ export default function About() {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

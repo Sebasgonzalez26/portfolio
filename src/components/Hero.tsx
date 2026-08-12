@@ -1,6 +1,17 @@
+import { motion, type Variants } from 'framer-motion'
 import { ArrowDown, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons'
 import { useLanguage } from '../i18n/useLanguage'
+
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+}
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 function HeroGraphic() {
   const dots = Array.from({ length: 5 }, (_, row) =>
@@ -8,9 +19,24 @@ function HeroGraphic() {
   ).flat()
 
   return (
-    <svg viewBox="0 0 400 440" className="w-full h-full" aria-hidden="true">
-      <circle cx="290" cy="110" r="120" fill="#AFE7FD" opacity="0.5" />
-      <rect
+    <motion.svg
+      viewBox="0 0 400 440"
+      className="w-full h-full"
+      aria-hidden="true"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <motion.circle
+        cx="290"
+        cy="110"
+        r="120"
+        fill="#AFE7FD"
+        opacity="0.5"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.rect
         x="40"
         y="210"
         width="190"
@@ -19,6 +45,8 @@ function HeroGraphic() {
         fill="#ECFE88"
         opacity="0.55"
         transform="rotate(-8 135 305)"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
       />
       <circle cx="110" cy="90" r="46" stroke="#734BEB" strokeWidth="2.5" fill="none" />
       <path
@@ -41,7 +69,7 @@ function HeroGraphic() {
           />
         ))}
       </g>
-    </svg>
+    </motion.svg>
   )
 }
 
@@ -58,42 +86,57 @@ export default function Hero() {
       className="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden bg-paper"
     >
       <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
-        <div>
-          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-purple mb-6">
+        <motion.div initial="hidden" animate="visible" variants={container}>
+          <motion.p
+            variants={item}
+            className="font-mono text-xs tracking-[0.3em] uppercase text-accent-purple mb-6"
+          >
             {t.hero.eyebrow}
-          </p>
+          </motion.p>
 
-          <h1 className="font-display text-5xl md:text-7xl font-semibold text-ink mb-6 leading-[1.05]">
+          <motion.h1
+            variants={item}
+            className="font-display text-5xl md:text-7xl font-semibold text-ink mb-6 leading-[1.05]"
+          >
             {t.hero.name}
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl text-ink font-medium mb-6 max-w-xl">{t.hero.role}</p>
+          <motion.p variants={item} className="text-xl md:text-2xl text-ink font-medium mb-6 max-w-xl">
+            {t.hero.role}
+          </motion.p>
 
-          <p className="text-ink-soft text-base leading-relaxed mb-8 max-w-lg">
+          <motion.p variants={item} className="text-ink-soft text-base leading-relaxed mb-8 max-w-lg">
             {t.hero.description}
-          </p>
+          </motion.p>
 
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-ink-soft border border-ink/10 rounded-full px-4 py-2 mb-10">
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-ink-soft border border-ink/10 rounded-full px-4 py-2 mb-10"
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
             {t.hero.available}
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap gap-4 mb-10">
-            <button
+          <motion.div variants={item} className="flex flex-wrap gap-4 mb-10">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => scrollTo('#work')}
               className="inline-flex items-center gap-2 bg-ink text-paper font-medium px-6 py-3 rounded-full hover:bg-accent-purple transition-colors duration-200"
             >
               {t.hero.ctaPrimary} ⟶
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => scrollTo('#contact')}
               className="inline-flex items-center gap-2 border border-ink/20 text-ink font-medium px-6 py-3 rounded-full hover:border-ink transition-colors duration-200"
             >
               {t.hero.ctaSecondary}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
-          <div className="flex gap-5">
+          <motion.div variants={item} className="flex gap-5">
             <a
               href="https://github.com/Sebasgonzalez26"
               target="_blank"
@@ -119,8 +162,8 @@ export default function Hero() {
             >
               <Mail size={20} />
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="hidden md:block relative h-96">
           <HeroGraphic />
