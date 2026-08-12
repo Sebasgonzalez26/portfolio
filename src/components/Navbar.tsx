@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useLanguage } from '../i18n/useLanguage'
 
@@ -19,7 +20,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-near-black">
+    <motion.nav
+      initial={{ y: -64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 bg-near-black">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <button
           onClick={() => handleNavClick('#hero')}
@@ -60,28 +65,38 @@ export default function Navbar() {
         </button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-near-black border-t border-white/10 px-6 py-4">
-          <ul className="flex flex-col gap-4 mb-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleNavClick(link.href)}
-                  className="font-mono text-xs tracking-[0.15em] uppercase text-white/70 hover:text-white w-full text-left"
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={toggleLanguage}
-            className="font-mono text-xs tracking-[0.15em] uppercase text-white border border-white/20 rounded-full px-3 py-1.5"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden bg-near-black border-t border-white/10 overflow-hidden"
           >
-            {language === 'es' ? 'English' : 'Español'}
-          </button>
-        </div>
-      )}
-    </nav>
+            <div className="px-6 py-4">
+              <ul className="flex flex-col gap-4 mb-4">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="font-mono text-xs tracking-[0.15em] uppercase text-white/70 hover:text-white w-full text-left"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={toggleLanguage}
+                className="font-mono text-xs tracking-[0.15em] uppercase text-white border border-white/20 rounded-full px-3 py-1.5"
+              >
+                {language === 'es' ? 'English' : 'Español'}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   )
 }
