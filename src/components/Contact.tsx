@@ -1,34 +1,28 @@
 import { useState } from 'react'
 import { Mail, Send, MapPin, CheckCircle } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons'
-
-const contactLinks = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'jg1829016@gmail.com',
-    href: 'mailto:jg1829016@gmail.com',
-    isBrand: false,
-  },
-  {
-    icon: GithubIcon,
-    label: 'GitHub',
-    value: 'github.com/Sebasgonzalez26',
-    href: 'https://github.com/Sebasgonzalez26',
-    isBrand: true,
-  },
-  {
-    icon: LinkedinIcon,
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/sebastián-josué-gonzález',
-    href: 'https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297',
-    isBrand: true,
-  },
-]
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Contact() {
+  const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+
+  const contactLinks = [
+    { icon: Mail, label: t.contact.formEmail, value: 'jg1829016@gmail.com', href: 'mailto:jg1829016@gmail.com' },
+    {
+      icon: GithubIcon,
+      label: 'GitHub',
+      value: 'github.com/Sebasgonzalez26',
+      href: 'https://github.com/Sebasgonzalez26',
+    },
+    {
+      icon: LinkedinIcon,
+      label: 'LinkedIn',
+      value: 'linkedin.com/in/sebastián-josué-gonzález',
+      href: 'https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297',
+    },
+  ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -36,60 +30,59 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Contacto desde portafolio - ${form.name}`)
-    const body = encodeURIComponent(`Nombre: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    const subject = encodeURIComponent(`Portfolio contact - ${form.name}`)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
     window.location.href = `mailto:jg1829016@gmail.com?subject=${subject}&body=${body}`
     setSent(true)
     setTimeout(() => setSent(false), 4000)
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-[#111111]">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-cyan-400 font-mono text-sm mb-3">// contacto</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Hablemos</h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
-            ¿Tenés una oportunidad laboral, un proyecto interesante o simplemente querés charlar?
-            Estoy disponible y con muchas ganas de sumarme a un equipo.
-          </p>
-        </div>
+    <section id="contact" className="py-24 px-6 bg-paper-soft">
+      <div className="max-w-5xl mx-auto">
+        <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-sky mb-4">
+          {t.contact.eyebrow}
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-4">
+          {t.contact.heading}
+        </h2>
+        <p className="text-ink-soft text-base leading-relaxed max-w-xl mb-12">
+          {t.contact.description}
+        </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left: info */}
           <div>
-            <div className="flex items-center gap-2 text-gray-400 text-sm mb-8">
-              <MapPin size={15} className="text-cyan-400" />
-              <span>San Antonio de Coronado, Costa Rica</span>
+            <div className="flex items-center gap-2 text-ink-soft text-sm mb-8">
+              <MapPin size={15} className="text-accent-purple" />
+              <span>{t.contact.location}</span>
             </div>
 
-            <div className="space-y-4 mb-10">
+            <div className="space-y-3 mb-8">
               {contactLinks.map(({ icon: Icon, label, value, href }) => (
                 <a
                   key={label}
                   href={href}
                   target={href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-[#0f0f0f] border border-white/5 rounded-xl hover:border-cyan-500/20 hover:bg-cyan-500/5 transition-all group"
+                  className="flex items-center gap-4 p-4 bg-paper border border-ink/10 rounded-xl hover:border-ink/30 transition-colors group"
                 >
-                  <div className="p-2.5 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
-                    <Icon size={16} className="text-cyan-400" />
+                  <div className="p-2.5 bg-paper-soft rounded-lg border border-ink/10">
+                    <Icon size={16} className="text-ink" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs mb-0.5">{label}</p>
-                    <p className="text-white text-sm font-medium">{value}</p>
+                    <p className="text-ink-faint text-xs mb-0.5">{label}</p>
+                    <p className="text-ink text-sm font-medium">{value}</p>
                   </div>
                 </a>
               ))}
             </div>
 
-            <div className="bg-[#0f0f0f] border border-cyan-500/20 rounded-xl p-5">
-              <p className="text-cyan-400 font-mono text-xs mb-2">// estado actual</p>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Estudiante avanzado en Universidad Fidélitas (Costa Rica), próximo a finalizar el bachillerato.
-                <span className="text-white font-medium"> Abierto a pasantías, trabajos part-time o posiciones junior en backend o data.</span>
+            <div className="bg-paper border border-ink/10 rounded-xl p-5">
+              <p className="font-mono text-accent-cyan text-xs uppercase tracking-wide mb-2">
+                {t.hero.available}
               </p>
+              <p className="text-ink-soft text-sm leading-relaxed">{t.contact.availability}</p>
             </div>
           </div>
 
@@ -97,8 +90,8 @@ export default function Contact() {
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-gray-400 text-sm mb-2">
-                  Nombre
+                <label htmlFor="name" className="block text-ink-soft text-sm mb-2">
+                  {t.contact.formName}
                 </label>
                 <input
                   id="name"
@@ -107,14 +100,14 @@ export default function Contact() {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  placeholder="Tu nombre"
-                  className="w-full bg-[#0f0f0f] border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  placeholder={t.contact.formPlaceholderName}
+                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-gray-400 text-sm mb-2">
-                  Email
+                <label htmlFor="email" className="block text-ink-soft text-sm mb-2">
+                  {t.contact.formEmail}
                 </label>
                 <input
                   id="email"
@@ -123,14 +116,14 @@ export default function Contact() {
                   value={form.email}
                   onChange={handleChange}
                   required
-                  placeholder="tu@email.com"
-                  className="w-full bg-[#0f0f0f] border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  placeholder={t.contact.formPlaceholderEmail}
+                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-gray-400 text-sm mb-2">
-                  Mensaje
+                <label htmlFor="message" className="block text-ink-soft text-sm mb-2">
+                  {t.contact.formMessage}
                 </label>
                 <textarea
                   id="message"
@@ -139,24 +132,24 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  placeholder="Cuéntame sobre la oportunidad o lo que necesitás..."
-                  className="w-full bg-[#0f0f0f] border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"
+                  placeholder={t.contact.formPlaceholderMessage}
+                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-100"
+                className="w-full flex items-center justify-center gap-2 bg-ink hover:bg-accent-purple text-paper font-semibold py-3 rounded-xl transition-colors duration-200"
               >
                 {sent ? (
                   <>
                     <CheckCircle size={16} />
-                    ¡Mensaje enviado!
+                    {t.contact.formSent}
                   </>
                 ) : (
                   <>
                     <Send size={16} />
-                    Enviar mensaje
+                    {t.contact.formSubmit}
                   </>
                 )}
               </button>
