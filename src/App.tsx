@@ -4,19 +4,22 @@ import About from './components/About'
 import Portfolio from './components/Portfolio'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 function App() {
   return (
-    <div className="bg-[#0f0f0f] min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Portfolio />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="bg-[#0f0f0f] min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Portfolio />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   )
 }
 
