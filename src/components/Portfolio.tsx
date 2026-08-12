@@ -1,173 +1,128 @@
-import { ExternalLink, Tag } from 'lucide-react'
+import { ArrowUpRight, Code2, Database, Layers, BarChart3 } from 'lucide-react'
 import { GithubIcon } from './icons/SocialIcons'
+import { useLanguage } from '../i18n/useLanguage'
 
-interface Project {
-  title: string
-  description: string
-  tags: string[]
-  github?: string
-  demo?: string
-}
-
-const projects: Project[] = [
-  {
-    title: 'API REST con C# y Arquitectura Limpia',
-    description:
-      'Backend con .NET Core aplicando arquitectura limpia: Controller, Service, Repository, Data Access, Reglas y Abstracciones. Autenticación y autorización por roles. Validada con Postman.',
-    tags: ['C#', '.NET Core', 'SQL Server', 'Postman', 'REST API'],
-    github: 'https://github.com/Sebasgonzalez26',
-  },
-  {
-    title: 'Data Warehouse con Modelo Estrella',
-    description:
-      'Diseño e implementación de un Data Warehouse bajo modelo estrella. Procesos ETL con Pentaho Data Integration para extracción, transformación y carga de datos desde múltiples fuentes.',
-    tags: ['Pentaho ETL', 'Data Warehouse', 'SQL Server', 'BI'],
-    github: 'https://github.com/Sebasgonzalez26',
-  },
-  {
-    title: 'Dashboard de Análisis con Power BI',
-    description:
-      'Panel interactivo de visualización de datos con KPIs, filtros dinámicos y reportes ejecutivos. Conectado a base de datos SQL para análisis en tiempo real.',
-    tags: ['Power BI', 'SQL Server', 'DAX', 'BI'],
-    github: 'https://github.com/Sebasgonzalez26',
-  },
-  {
-    title: 'API REST con Node.js y MongoDB',
-    description:
-      'API REST desarrollada con Node.js e integrada con MongoDB para gestión de datos NoSQL. Incluye autenticación JWT, manejo de errores y documentación de endpoints.',
-    tags: ['Node.js', 'MongoDB', 'JWT', 'REST API'],
-    github: 'https://github.com/Sebasgonzalez26',
-  },
-  {
-    title: 'Deploy en Microsoft Azure',
-    description:
-      'Despliegue de aplicación backend en Microsoft Azure con control de versiones en GitHub. Configuración de entornos, variables y pipeline básico de CI/CD.',
-    tags: ['Azure', 'Git / GitHub', 'DevOps', '.NET'],
-    github: 'https://github.com/Sebasgonzalez26',
-  },
-  {
-    title: 'Portafolio Personal',
-    description:
-      'Este mismo sitio. Construido con React, TypeScript y Tailwind CSS. Diseño dark mode con acento cian, totalmente responsive y deployable en Vercel.',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    github: 'https://github.com/Sebasgonzalez26',
-    demo: '#',
-  },
+const tagColors = [
+  'border-accent-cyan/30 text-accent-cyan',
+  'border-accent-pink/30 text-accent-pink',
+  'border-accent-purple/30 text-accent-purple',
+  'border-accent-coral/30 text-accent-coral',
+  'border-ink/20 text-ink',
+  'border-accent-cyan/30 text-accent-cyan',
 ]
 
-const tagColor: Record<string, string> = {
-  'C#': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  '.NET Core': 'bg-purple-400/10 text-purple-300 border-purple-400/20',
-  '.NET': 'bg-purple-400/10 text-purple-300 border-purple-400/20',
-  'SQL Server': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-  Postman: 'bg-orange-400/10 text-orange-300 border-orange-400/20',
-  'REST API': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  'Pentaho ETL': 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-  'Data Warehouse': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  BI: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
-  'Power BI': 'bg-yellow-600/10 text-yellow-300 border-yellow-600/20',
-  DAX: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-  'Node.js': 'bg-green-500/10 text-green-400 border-green-500/20',
-  MongoDB: 'bg-green-600/10 text-green-400 border-green-600/20',
-  JWT: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
-  Azure: 'bg-blue-400/10 text-blue-300 border-blue-400/20',
-  'Git / GitHub': 'bg-gray-500/10 text-gray-400 border-gray-500/20',
-  DevOps: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
-  React: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  TypeScript: 'bg-blue-400/10 text-blue-300 border-blue-400/20',
-  'Tailwind CSS': 'bg-cyan-600/10 text-cyan-300 border-cyan-600/20',
-  Vite: 'bg-purple-400/10 text-purple-300 border-purple-400/20',
-}
+const otherIcons = [Code2, Database, Layers, BarChart3]
 
-function getTagClass(tag: string) {
-  return tagColor[tag] ?? 'bg-gray-500/10 text-gray-400 border-gray-500/20'
+function BakeryPreview() {
+  return (
+    <div className="aspect-[16/10] rounded-xl overflow-hidden border border-ink/10 flex bg-[#1a0f09]">
+      <div className="flex-1 p-5 flex flex-col justify-between text-white">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-md bg-white/10 flex items-center justify-center font-display text-xs">
+            D
+          </div>
+          <span className="font-display text-xs">Davi's Bakery</span>
+        </div>
+        <div>
+          <p className="font-display text-xl sm:text-2xl font-bold mb-2 leading-tight">
+            Welcome back.
+          </p>
+          <p className="text-white/50 text-[11px] mb-3 hidden sm:block">
+            Gestioná pedidos, inventario, pagos y finanzas desde un solo lugar
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {['Pedidos', 'Inventario', 'Finanzas', 'Pagos'].map((tag) => (
+              <span key={tag} className="text-[10px] bg-white/10 rounded-full px-2 py-1">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 bg-[#FAF7F2] p-5 hidden sm:flex flex-col justify-center gap-2.5">
+        <p className="font-display text-xs font-semibold text-ink mb-1">Iniciá sesión</p>
+        <div className="h-7 rounded-md bg-white border border-ink/10" />
+        <div className="h-7 rounded-md bg-white border border-ink/10" />
+        <div className="h-7 rounded-md bg-[#1a0f09] mt-1" />
+      </div>
+    </div>
+  )
 }
 
 export default function Portfolio() {
+  const { t } = useLanguage()
+  const { featured } = t.projects
+
   return (
-    <section id="portfolio" className="py-24 px-6 bg-[#0f0f0f]">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-cyan-400 font-mono text-sm mb-3">// proyectos</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Mis Proyectos</h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
-            Proyectos técnicos que reflejan mi experiencia en backend, ingeniería de datos y desarrollo fullstack.
-          </p>
-        </div>
+    <section id="work" className="py-24 px-6 bg-paper">
+      <div className="max-w-5xl mx-auto">
+        <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-coral mb-4">
+          {t.projects.eyebrow}
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-12">
+          {t.projects.heading}
+        </h2>
 
-        {/* Projects grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="card-hover bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col group"
-            >
-              {/* Top row */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-2.5 bg-cyan-500/10 rounded-xl">
-                  <Tag size={16} className="text-cyan-400" />
-                </div>
-                <div className="flex gap-3">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-cyan-400 transition-colors"
-                      aria-label="Ver en GitHub"
-                    >
-                      <GithubIcon size={18} />
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-cyan-400 transition-colors"
-                      aria-label="Ver demo"
-                    >
-                      <ExternalLink size={18} />
-                    </a>
-                  )}
-                </div>
-              </div>
+        {/* Featured project */}
+        <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center mb-20">
+          <BakeryPreview />
 
-              {/* Title & description */}
-              <h3 className="text-white font-semibold text-base mb-2 group-hover:text-cyan-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">
-                {project.description}
-              </p>
+          <div>
+            <h3 className="font-display text-2xl font-semibold text-ink mb-1">{featured.title}</h3>
+            <p className="text-ink-soft text-sm mb-4">{featured.subtitle}</p>
+            <p className="text-ink-soft text-sm leading-relaxed mb-6">{featured.description}</p>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className={`text-xs px-2.5 py-1 rounded-full border font-mono ${getTagClass(tag)}`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {featured.tags.map((tag, i) => (
+                <span
+                  key={tag}
+                  className={`font-mono text-[11px] uppercase tracking-wide border rounded-full px-3 py-1 ${tagColors[i % tagColors.length]}`}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
-          ))}
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="https://www.davisbakery.store"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-ink text-paper font-medium text-sm px-5 py-2.5 rounded-full hover:bg-accent-purple transition-colors"
+              >
+                {featured.liveLabel}
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href="https://github.com/Sebasgonzalez26/david-s-bakery-"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 border border-ink/20 text-ink font-medium text-sm px-5 py-2.5 rounded-full hover:border-ink transition-colors"
+              >
+                <GithubIcon size={15} />
+                {featured.codeLabel}
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* GitHub CTA */}
-        <div className="text-center mt-12">
-          <a
-            href="https://github.com/Sebasgonzalez26"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 text-gray-400 hover:text-white hover:border-white/30 px-6 py-3 rounded-lg transition-all text-sm font-medium"
-          >
-            <GithubIcon size={16} />
-            Ver todos mis repositorios
-          </a>
+        {/* Other things I've built */}
+        <h3 className="font-display text-xl font-semibold text-ink mb-6">
+          {t.projects.otherHeading}
+        </h3>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {t.projects.otherItems.map((item, i) => {
+            const Icon = otherIcons[i % otherIcons.length]
+            return (
+              <div key={item.title} className="border border-ink/10 rounded-xl p-5 bg-paper-soft">
+                <div className="p-2 bg-paper rounded-lg border border-ink/10 w-fit mb-3">
+                  <Icon size={16} className="text-ink" />
+                </div>
+                <p className="text-ink font-medium text-sm mb-1">{item.title}</p>
+                <p className="text-ink-soft text-xs leading-relaxed">{item.description}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
