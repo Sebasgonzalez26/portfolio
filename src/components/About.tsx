@@ -1,151 +1,102 @@
-import { GraduationCap, Briefcase, Globe, Award } from 'lucide-react'
+import { ArrowUpRight, GraduationCap, Award } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
-const skillGroups = [
-  {
-    category: 'Backend & APIs',
-    skills: [
-      { name: 'C# / .NET', level: 80 },
-      { name: 'Node.js', level: 75 },
-      { name: 'APIs REST', level: 85 },
-    ],
-  },
-  {
-    category: 'Bases de Datos',
-    skills: [
-      { name: 'SQL Server / MySQL / Oracle', level: 80 },
-      { name: 'MongoDB (NoSQL)', level: 70 },
-    ],
-  },
-  {
-    category: 'Data Engineering & BI',
-    skills: [
-      { name: 'Pentaho ETL', level: 72 },
-      { name: 'Power BI', level: 70 },
-      { name: 'Tableau', level: 65 },
-    ],
-  },
-  {
-    category: 'Cloud & DevOps',
-    skills: [
-      { name: 'Microsoft Azure', level: 65 },
-      { name: 'Git / GitHub', level: 85 },
-      { name: 'Postman', level: 82 },
-    ],
-  },
-]
-
-const highlights = [
-  {
-    icon: GraduationCap,
-    title: 'Universidad Fidélitas',
-    description: 'Bachillerato en Ingeniería en Sistemas (2023 – Presente). Próximo a finalizar.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Concentrix / Goldman Sachs',
-    description: 'Especialista Apple Card desde dic. 2025 — análisis de cuentas, normativas y atención al cliente.',
-  },
-  {
-    icon: Award,
-    title: 'Certificaciones',
-    description: 'Cisco CCNA (2024) · BELT English C1 (Marzo 2026). Comprometido con el aprendizaje continuo.',
-  },
-  {
-    icon: Globe,
-    title: 'Bilingüe',
-    description: 'Español nativo · Inglés C1 (BELT). Capaz de trabajar en entornos internacionales.',
-  },
+const chipColors = [
+  'border-accent-cyan/30 text-accent-cyan',
+  'border-accent-pink/30 text-accent-pink',
+  'border-accent-purple/30 text-accent-purple',
+  'border-accent-coral/30 text-accent-coral',
+  'border-ink/20 text-ink',
+  'border-accent-cyan/30 text-accent-cyan',
 ]
 
 export default function About() {
+  const { t } = useLanguage()
+
   return (
-    <section id="about" className="py-24 px-6 bg-[#111111]">
-      <div className="max-w-6xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <p className="text-cyan-400 font-mono text-sm mb-3">// sobre mí</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">¿Quién soy?</h2>
+    <section id="currently" className="py-24 px-6 bg-paper-soft">
+      <div className="max-w-5xl mx-auto">
+        {/* Currently */}
+        <div className="mb-24">
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-cyan mb-4">
+            {t.currently.eyebrow}
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-6">
+            {t.currently.heading}
+          </h2>
+          <p className="text-ink-soft text-lg leading-relaxed max-w-3xl">
+            {t.currently.paragraph}{' '}
+            <a
+              href="https://www.davisbakery.store"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink font-medium underline decoration-accent-lime decoration-2 underline-offset-4 hover:text-accent-purple transition-colors inline-flex items-center gap-1"
+            >
+              {t.currently.linkText}
+              <ArrowUpRight size={16} />
+            </a>
+            {t.currently.paragraphEnd}
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Left: bio + highlights */}
-          <div>
-            <p className="text-gray-400 text-base leading-relaxed mb-5">
-              Soy <span className="text-white font-medium">Sebastián González Rojas</span>, estudiante avanzado de
-              Ingeniería en Sistemas en la Universidad Fidélitas (Costa Rica). Mi enfoque está en el
-              desarrollo <span className="text-white font-medium">backend con C# (.NET) y Node.js</span> bajo
-              arquitectura limpia, y en la ingeniería de datos con <span className="text-white font-medium">Pentaho ETL</span> y
-              construcción de Data Warehouses.
-            </p>
-            <p className="text-gray-400 text-base leading-relaxed mb-10">
-              Cuento con inglés C1 certificado y estoy listo para dar el siguiente paso en mi carrera dentro del mundo tech.
-              Podés ver todos mis repositorios y proyectos en{' '}
-              <a
-                href="https://github.com/Sebasgonzalez26"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2 transition-colors"
+        {/* Capabilities */}
+        <div className="mb-24">
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-pink mb-4">
+            {t.capabilities.eyebrow}
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-8">
+            {t.capabilities.heading}
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            {t.capabilities.categories.map((category, i) => (
+              <span
+                key={category}
+                className={`font-mono text-xs uppercase tracking-wide border rounded-full px-4 py-2 ${chipColors[i % chipColors.length]}`}
               >
-                github.com/Sebasgonzalez26
-              </a>.
-            </p>
+                {category}
+              </span>
+            ))}
+          </div>
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {highlights.map(({ icon: Icon, title, description }) => (
-                <div
-                  key={title}
-                  className="bg-[#0f0f0f] border border-white/5 rounded-xl p-4 hover:border-cyan-500/20 transition-colors"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-cyan-500/10 rounded-lg">
-                      <Icon size={16} className="text-cyan-400" />
-                    </div>
-                    <h3 className="text-white text-sm font-semibold">{title}</h3>
+        {/* Education & certifications */}
+        <div>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-purple mb-4">
+            {t.education.eyebrow}
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-8">
+            {t.education.heading}
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="space-y-5">
+              {t.education.items.map((item) => (
+                <div key={item.title} className="flex gap-4">
+                  <div className="p-2 bg-paper rounded-lg border border-ink/10 h-fit">
+                    <GraduationCap size={16} className="text-ink" />
                   </div>
-                  <p className="text-gray-500 text-xs leading-relaxed">{description}</p>
+                  <div>
+                    <p className="text-ink font-medium">{item.title}</p>
+                    <p className="font-mono text-xs text-ink-faint mb-1">{item.period}</p>
+                    <p className="text-ink-soft text-sm">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Right: skills grouped */}
-          <div className="space-y-7">
-            {skillGroups.map((group) => (
-              <div key={group.category}>
-                <p className="text-cyan-400 font-mono text-xs mb-3">{group.category}</p>
-                <div className="space-y-3">
-                  {group.skills.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-gray-300 text-sm">{skill.name}</span>
-                        <span className="text-cyan-400 text-xs font-mono">{skill.level}%</span>
-                      </div>
-                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-full"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+            <div className="space-y-3">
+              {t.education.certifications.map((cert) => (
+                <div
+                  key={cert.title}
+                  className="flex items-center justify-between gap-4 bg-paper border border-ink/10 rounded-xl px-4 py-3"
+                >
+                  <div className="flex items-center gap-3">
+                    <Award size={15} className="text-accent-purple shrink-0" />
+                    <p className="text-ink text-sm font-medium">{cert.title}</p>
+                  </div>
+                  <span className="font-mono text-xs text-ink-faint shrink-0">{cert.year}</span>
                 </div>
-              </div>
-            ))}
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-2">
-              <div className="bg-[#0f0f0f] border border-white/5 rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-cyan-400 mb-1">C1</p>
-                <p className="text-gray-500 text-xs">Inglés BELT</p>
-              </div>
-              <div className="bg-[#0f0f0f] border border-white/5 rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-cyan-400 mb-1">2</p>
-                <p className="text-gray-500 text-xs">Certificaciones</p>
-              </div>
-              <div className="bg-[#0f0f0f] border border-white/5 rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-cyan-400 mb-1">CCNA</p>
-                <p className="text-gray-500 text-xs">Cisco 2024</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
