@@ -1,67 +1,50 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
-import { useLanguage } from '../i18n/useLanguage'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+
+const navLinks = ['Home', 'About Us', 'Courses', 'Instructors', 'Testimonials', 'Blog']
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { language, toggleLanguage, t } = useLanguage()
-
-  const navLinks = [
-    { label: t.nav.home, href: '#hero' },
-    { label: t.nav.currently, href: '#currently' },
-    { label: t.nav.work, href: '#work' },
-    { label: t.nav.contact, href: '#contact' },
-  ]
-
-  const handleNavClick = (href: string) => {
-    setIsOpen(false)
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   return (
-    <motion.nav
-      initial={{ y: -64, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-near-black">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <button
-          onClick={() => handleNavClick('#hero')}
-          className="font-mono text-xs tracking-[0.2em] uppercase text-white hover:text-accent-sky transition-colors"
-        >
-          Sebastián González
-        </button>
+    <nav className="fixed top-0 left-0 right-0 z-50 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+        {/* Logo */}
+        <a href="#hero" className="flex items-center gap-2.5">
+          <span className="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center">
+            <span className="w-2.5 h-2.5 rounded-full bg-white" />
+          </span>
+          <span className="text-white text-base font-medium">DesignPro</span>
+        </a>
 
-        <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <button
-                onClick={() => handleNavClick(link.href)}
-                className="font-mono text-xs tracking-[0.15em] uppercase text-white/70 hover:text-white transition-colors"
-              >
-                {link.label}
-              </button>
-            </li>
+        {/* Desktop links */}
+        <div className="hidden lg:flex items-center gap-7 border border-gray-700 rounded-full px-7 py-3">
+          {navLinks.map((label) => (
+            <a
+              key={label}
+              href="#"
+              className="text-sm text-white/80 hover:text-white transition-colors"
+            >
+              {label}
+            </a>
           ))}
-        </ul>
-
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={toggleLanguage}
-            className="font-mono text-xs tracking-[0.15em] uppercase text-white/70 hover:text-white hover:border-white/50 border border-white/20 rounded-full px-3 py-1.5 transition-colors"
-            aria-label="Toggle language"
+          <a
+            href="#"
+            className="text-sm text-white/80 hover:text-white transition-colors inline-flex items-center gap-1"
           >
-            {language === 'es' ? 'EN' : 'ES'}
-          </button>
+            Contact us
+            <ArrowUpRight size={14} />
+          </a>
         </div>
 
+        {/* Mobile toggle */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -72,31 +55,23 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden bg-near-black border-t border-white/10 overflow-hidden"
+            className="lg:hidden overflow-hidden bg-black/90 backdrop-blur-md border-t border-gray-700"
           >
-            <div className="px-6 py-4">
-              <ul className="flex flex-col gap-4 mb-4">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <button
-                      onClick={() => handleNavClick(link.href)}
-                      className="font-mono text-xs tracking-[0.15em] uppercase text-white/70 hover:text-white w-full text-left"
-                    >
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={toggleLanguage}
-                className="font-mono text-xs tracking-[0.15em] uppercase text-white border border-white/20 rounded-full px-3 py-1.5"
-              >
-                {language === 'es' ? 'English' : 'Español'}
-              </button>
+            <div className="px-6 py-5 flex flex-col gap-4">
+              {[...navLinks, 'Contact us'].map((label) => (
+                <a
+                  key={label}
+                  href="#"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm text-white/80 hover:text-white transition-colors"
+                >
+                  {label}
+                </a>
+              ))}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   )
 }

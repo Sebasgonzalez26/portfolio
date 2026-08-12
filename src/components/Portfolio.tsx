@@ -67,7 +67,7 @@ export default function Portfolio() {
 
         {/* Featured project */}
         <Reveal className="mb-20">
-          <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.06)] transition-all duration-300">
             <BakeryPreview />
 
           <div>
