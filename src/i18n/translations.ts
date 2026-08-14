@@ -17,11 +17,17 @@ export interface OtherProjectItem {
 }
 
 export interface ProjectCard {
-  /** Matches a preview renderer in Portfolio.tsx */
+  /** Slug used in the URL and to pick a preview renderer. */
   id: string
   title: string
+  subtitle: string
+  /** Short blurb for the card. */
   description: string
+  /** Long-form background shown on the detail page. */
+  context: string
   tags: string[]
+  technologies: string[]
+  keyFeatures: string[]
   liveUrl?: string
   repoUrl?: string
 }
@@ -75,6 +81,13 @@ export interface Translation {
     liveLabel: string
     codeLabel: string
     noLinkLabel: string
+    detailsLabel: string
+    backLabel: string
+    technologiesLabel: string
+    keyFeaturesLabel: string
+    technologiesStat: string
+    keyFeaturesStat: string
+    notFound: string
     otherHeading: string
     otherItems: OtherProjectItem[]
   }
@@ -169,18 +182,61 @@ export const translations: Record<Language, Translation> = {
         {
           id: 'bakery',
           title: "David's Bakery",
+          subtitle: 'Sistema de gestión full-stack para una pastelería',
           description:
-            'Sistema de gestión full-stack en producción para una pastelería real: dos APIs en ASP.NET Core 8, base de datos SQL Server con 36 stored procedures, frontend en React + TypeScript + Vite, autenticación JWT y CI/CD con GitHub Actions.',
+            'Sistema de gestión en producción para una pastelería real: dos APIs en ASP.NET Core 8, SQL Server con 36 stored procedures, frontend en React y CI/CD con GitHub Actions.',
+          context:
+            'David\'s Bakery es una pastelería que llevaba sus pedidos, su inventario y sus cuentas en cuadernos y hojas de cálculo sueltas. Perdían pedidos, no sabían qué ingredientes les quedaban y cerrar el mes era un ejercicio de memoria. Construí un sistema que centraliza todo eso en un solo lugar y que el negocio usa a diario. Lo diseñé de punta a punta: modelo de datos, procedimientos almacenados, dos APIs separadas —una de negocio y otra de seguridad—, la interfaz web y el despliegue con integración continua.',
           tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
+          technologies: [
+            'C#',
+            'ASP.NET Core 8',
+            'Dapper',
+            'SQL Server',
+            'React',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'JWT',
+            'Azure',
+            'GitHub Actions',
+          ],
+          keyFeatures: [
+            'Pedidos con estados: pendiente, en proceso, listo, entregado y cancelado',
+            'Control de inventario con movimientos de entrada y salida',
+            'Registro de pagos y cierre de finanzas del negocio',
+            'Autenticación con JWT y acceso por roles',
+            'Recuperación de contraseña por correo electrónico',
+            'Despliegue continuo con GitHub Actions y dominio propio',
+          ],
           liveUrl: 'https://www.davisbakery.store',
           repoUrl: 'https://github.com/Sebasgonzalez26/david-s-bakery-',
         },
         {
           id: 'portfolio',
           title: 'Portafolio personal',
+          subtitle: 'Sitio de una página con animaciones e idiomas',
           description:
             'Este mismo sitio: una sola página en React + TypeScript con Vite, animaciones en Framer Motion, sistema de idiomas propio y despliegue continuo en Vercel.',
+          context:
+            'Quería un portafolio que no se pareciera a las plantillas que se repiten en todos lados, y que además me sirviera de ejercicio de frontend. Lo armé desde cero: un sistema de diseño propio en Tailwind, un hero con video de fondo auto-hospedado, animaciones de entrada y scroll con Framer Motion, y un sistema de traducciones hecho a mano con React Context en lugar de sumar una librería de i18n para un sitio de una sola página.',
           tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+          technologies: [
+            'React',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'Framer Motion',
+            'React Router',
+            'Vercel',
+          ],
+          keyFeatures: [
+            'Hero a pantalla completa con video auto-hospedado y respaldo en degradado',
+            'Animaciones de scroll y entrada con Framer Motion',
+            'Sistema de idiomas español/inglés con React Context',
+            'Sección de proyectos con pestañas y páginas de detalle',
+            'Diseño responsive verificado desde 375px',
+          ],
           repoUrl: 'https://github.com/Sebasgonzalez26/portfolio',
         },
       ],
@@ -202,7 +258,14 @@ export const translations: Record<Language, Translation> = {
       ],
       liveLabel: 'Ver en vivo',
       codeLabel: 'Ver código',
-      noLinkLabel: 'Repositorio privado',
+      noLinkLabel: 'Sin enlace',
+      detailsLabel: 'Detalles',
+      backLabel: 'Volver',
+      technologiesLabel: 'Tecnologías usadas',
+      keyFeaturesLabel: 'Características principales',
+      technologiesStat: 'Tecnologías usadas',
+      keyFeaturesStat: 'Características',
+      notFound: 'No encontramos ese proyecto.',
       otherHeading: 'Otras cosas que he construido',
       otherItems: [
         {
@@ -314,18 +377,61 @@ export const translations: Record<Language, Translation> = {
         {
           id: 'bakery',
           title: "David's Bakery",
+          subtitle: 'Full-stack management system for a bakery',
           description:
-            'Full-stack management system running in production for a real bakery: two ASP.NET Core 8 APIs, a SQL Server database with 36 stored procedures, a React + TypeScript + Vite frontend, JWT authentication and GitHub Actions CI/CD.',
+            'Management system running in production for a real bakery: two ASP.NET Core 8 APIs, SQL Server with 36 stored procedures, a React frontend and GitHub Actions CI/CD.',
+          context:
+            "David's Bakery is a bakery that ran its orders, stock and accounts across notebooks and loose spreadsheets. Orders slipped through the cracks, nobody knew what ingredients were left, and closing the month was an exercise in memory. I built a system that pulls all of it into one place, and the business uses it every day. I designed it end to end: the data model, the stored procedures, two separate APIs — one for the business domain and one for security — the web interface, and the deployment pipeline.",
           tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
+          technologies: [
+            'C#',
+            'ASP.NET Core 8',
+            'Dapper',
+            'SQL Server',
+            'React',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'JWT',
+            'Azure',
+            'GitHub Actions',
+          ],
+          keyFeatures: [
+            'Orders with states: pending, in progress, ready, delivered and cancelled',
+            'Stock control with inbound and outbound movements',
+            'Payment records and month-end financial close',
+            'JWT authentication with role-based access',
+            'Password recovery over email',
+            'Continuous deployment with GitHub Actions and a custom domain',
+          ],
           liveUrl: 'https://www.davisbakery.store',
           repoUrl: 'https://github.com/Sebasgonzalez26/david-s-bakery-',
         },
         {
           id: 'portfolio',
           title: 'Personal portfolio',
+          subtitle: 'Single-page site with animations and languages',
           description:
             'This very site: a single page in React + TypeScript with Vite, Framer Motion animations, a hand-rolled language system and continuous deployment on Vercel.',
+          context:
+            'I wanted a portfolio that did not look like the templates you see everywhere, and that would double as a frontend exercise. I built it from scratch: a design system of my own in Tailwind, a hero with a self-hosted background video, entrance and scroll animations with Framer Motion, and a hand-rolled translation system on React Context rather than pulling in an i18n library for a single-page site.',
           tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+          technologies: [
+            'React',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'Framer Motion',
+            'React Router',
+            'Vercel',
+          ],
+          keyFeatures: [
+            'Full-screen hero with a self-hosted video and a gradient fallback',
+            'Scroll and entrance animations with Framer Motion',
+            'Spanish/English language system built on React Context',
+            'Projects section with tabs and dedicated detail pages',
+            'Responsive layout verified from 375px up',
+          ],
           repoUrl: 'https://github.com/Sebasgonzalez26/portfolio',
         },
       ],
@@ -347,7 +453,14 @@ export const translations: Record<Language, Translation> = {
       ],
       liveLabel: 'View live',
       codeLabel: 'View code',
-      noLinkLabel: 'Private repository',
+      noLinkLabel: 'No link',
+      detailsLabel: 'Details',
+      backLabel: 'Back',
+      technologiesLabel: 'Technologies used',
+      keyFeaturesLabel: 'Key features',
+      technologiesStat: 'Technologies used',
+      keyFeaturesStat: 'Key features',
+      notFound: "We couldn't find that project.",
       otherHeading: "Other things I've built",
       otherItems: [
         {

@@ -1,73 +1,14 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Award, Lock } from 'lucide-react'
+import { ArrowRight, Award, Lock } from 'lucide-react'
 import { GithubIcon } from './icons/SocialIcons'
 import { useLanguage } from '../i18n/useLanguage'
+import { projectPreviews } from './projectPreviewMap'
+import { stackIcons } from './stackIcons'
 import Reveal from './Reveal'
 
 type Tab = 'projects' | 'certificates' | 'stack'
-
-/** Recreation of the real davisbakery.store login screen. */
-function BakeryPreview() {
-  return (
-    <div className="absolute inset-0 flex bg-[#1a0f09]">
-      <div className="flex-1 p-4 flex flex-col justify-between text-white">
-        <div className="flex items-center gap-1.5">
-          <div className="w-5 h-5 rounded-md bg-white/10 flex items-center justify-center font-display text-[9px]">
-            D
-          </div>
-          <span className="font-display text-[10px]">Davi&apos;s Bakery</span>
-        </div>
-        <div>
-          <p className="font-display text-base font-bold mb-1.5 leading-tight">Welcome back.</p>
-          <div className="flex flex-wrap gap-1">
-            {['Pedidos', 'Inventario', 'Finanzas'].map((tag) => (
-              <span key={tag} className="text-[8px] bg-white/10 rounded-full px-1.5 py-0.5">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-      {/* Panel keeps the cream background of the real screen, so its ink stays dark. */}
-      <div className="flex-1 bg-[#FAF7F2] p-4 hidden sm:flex flex-col justify-center gap-2">
-        <p className="font-display text-[9px] font-semibold text-[#1a0f09]">Iniciá sesión</p>
-        <div className="h-5 rounded bg-white border border-black/10" />
-        <div className="h-5 rounded bg-white border border-black/10" />
-        <div className="h-5 rounded bg-[#1a0f09]" />
-      </div>
-    </div>
-  )
-}
-
-/** Miniature of this site's own hero. */
-function PortfolioPreview() {
-  return (
-    <div className="absolute inset-0 bg-black flex flex-col items-center justify-center gap-1.5">
-      <div
-        className="absolute inset-0 opacity-60"
-        style={{
-          background:
-            'radial-gradient(120% 90% at 30% 70%, rgba(76,82,162,0.6) 0%, rgba(28,40,87,0.35) 40%, rgba(0,0,0,0) 75%)',
-        }}
-      />
-      <p className="relative font-mono text-[6px] tracking-[0.25em] uppercase text-white/60">
-        Sebastián González Rojas
-      </p>
-      <p className="relative font-instrument-sans text-xl font-semibold leading-none text-white">
-        Sebastián
-      </p>
-      <p className="relative font-instrument-sans text-xl font-semibold leading-none text-[#8fd4f5]">
-        González Rojas
-      </p>
-    </div>
-  )
-}
-
-const previews: Record<string, () => React.JSX.Element> = {
-  bakery: BakeryPreview,
-  portfolio: PortfolioPreview,
-}
 
 export default function Portfolio() {
   const { t } = useLanguage()
@@ -154,7 +95,7 @@ export default function Portfolio() {
             {tab === 'projects' && (
               <div className="grid md:grid-cols-2 gap-6">
                 {t.projects.items.map((project) => {
-                  const Preview = previews[project.id]
+                  const Preview = projectPreviews[project.id]
                   return (
                     <article
                       key={project.id}
@@ -200,17 +141,13 @@ export default function Portfolio() {
                           </span>
                         )}
 
-                        {project.liveUrl && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 bg-white text-black text-xs font-medium px-4 py-2 rounded-full hover:bg-white/90 transition-colors"
-                          >
-                            {t.projects.liveLabel}
-                            <ArrowUpRight size={14} />
-                          </a>
-                        )}
+                        <Link
+                          to={`/proyecto/${project.id}`}
+                          className="inline-flex items-center gap-1.5 bg-white text-black text-xs font-medium px-4 py-2 rounded-full hover:bg-white/90 transition-colors"
+                        >
+                          {t.projects.detailsLabel}
+                          <ArrowRight size={14} />
+                        </Link>
                       </div>
                     </article>
                   )
@@ -238,18 +175,35 @@ export default function Portfolio() {
             )}
 
             {tab === 'stack' && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {t.projects.stack.map((item) => (
-                  <div
-                    key={item.name}
-                    className="border border-white/12 rounded-xl px-4 py-4 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.04] transition-colors"
-                  >
-                    <p className="text-white text-sm font-medium mb-1">{item.name}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/40">
-                      {item.category}
-                    </p>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {t.projects.stack.map((item) => {
+                  const brand = stackIcons[item.name]
+                  return (
+                    <motion.div
+                      key={item.name}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.2 }}
+                      className="group flex flex-col items-center justify-center text-center gap-3 aspect-square border border-white/12 rounded-2xl p-4 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06] transition-colors"
+                    >
+                      {brand && (
+                        <brand.Icon
+                          size={40}
+                          style={{ color: brand.color }}
+                          aria-hidden="true"
+                          className="transition-transform duration-300 group-hover:scale-110"
+                        />
+                      )}
+                      <div>
+                        <p className="text-white text-xs sm:text-sm font-medium leading-tight">
+                          {item.name}
+                        </p>
+                        <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-white/35 mt-1">
+                          {item.category}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )
+                })}
               </div>
             )}
         </motion.div>

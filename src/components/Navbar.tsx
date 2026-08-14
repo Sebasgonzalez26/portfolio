@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 
@@ -12,10 +13,19 @@ const contactLink = { label: 'Contacto', href: '#contact' }
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault()
     setIsOpen(false)
+
+    // Sections only exist on the home route, so from a detail page we route
+    // home first and let it scroll to the hash once mounted.
+    if (pathname !== '/') {
+      navigate(`/${href}`)
+      return
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
