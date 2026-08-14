@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#111}
+
+  /* Tamaño que piden LinkedIn, X y Facebook para la tarjeta grande */
+  .og{width:1200px;height:630px;position:relative;overflow:hidden;background:#000;color:#fff;
+      display:flex;flex-direction:column;justify-content:center;padding:72px 80px;
+      font-family:'Space Grotesk',sans-serif}
+
+  .glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
+  .glow.a{width:640px;height:640px;background:rgba(48,84,255,.34);top:-220px;left:-160px}
+  .glow.b{width:520px;height:520px;background:rgba(118,75,235,.26);bottom:-200px;right:-120px}
+
+  .grid{position:absolute;inset:0;opacity:.06;
+    background-image:linear-gradient(rgba(255,255,255,.8) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.8) 1px,transparent 1px);
+    background-size:60px 60px}
+
+  .vignette{position:absolute;inset:0;
+    background:radial-gradient(ellipse at 35% 45%, transparent 40%, rgba(0,0,0,.72) 100%)}
+
+  .row{position:relative;display:flex;align-items:center;gap:18px;margin-bottom:34px}
+  .mark{width:56px;height:56px;border-radius:16px;border:2px solid rgba(255,255,255,.9);
+        display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;
+        letter-spacing:-.5px}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.34em;
+          text-transform:uppercase;color:rgba(255,255,255,.52)}
+
+  h1{position:relative;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:82px;
+     line-height:.98;letter-spacing:-2.5px;margin-bottom:26px}
+  h1 .accent{background:linear-gradient(to bottom,#fff 34%,#8FD4F5 100%);
+             -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .role{position:relative;font-family:'JetBrains Mono',monospace;font-size:19px;letter-spacing:.2em;
+        text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:40px}
+
+  .tags{position:relative;display:flex;gap:12px}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.06em;
+       border:1.4px solid rgba(255,255,255,.22);border-radius:999px;padding:11px 22px;
+       color:rgba(255,255,255,.8)}
+
+  .url{position:absolute;right:80px;bottom:64px;font-family:'JetBrains Mono',monospace;
+       font-size:19px;color:rgba(255,255,255,.5)}
+</style>
+</head>
+<body>
+  <div class="og">
+    <div class="glow a"></div>
+    <div class="glow b"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="row">
+      <span class="mark">SGR</span>
+      <span class="kicker">Ingeniero en Sistemas · Costa Rica</span>
+    </div>
+
+    <h1>Sebastián<br><span class="accent">González Rojas</span></h1>
+
+    <div class="role">Desarrollo full-stack</div>
+
+    <div class="tags">
+      <span class="tag">C# / .NET</span>
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">SQL Server</span>
+      <span class="tag">Azure</span>
+    </div>
+
+    <div class="url">sebasgonzalez.vercel.app</div>
+  </div>
+</body>
+</html>
