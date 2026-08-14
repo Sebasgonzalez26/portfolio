@@ -1,12 +1,20 @@
 import { ArrowRight } from 'lucide-react'
 import ShinyText from './ShinyText'
 
-const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4'
+const VIDEO_SRC = '/hero-background.mp4'
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden bg-black font-sans">
+    <section
+      id="hero"
+      className="relative h-screen w-full overflow-hidden bg-black font-sans"
+      // Approximates the video's palette so the hero still reads as designed
+      // while the file loads, or if it fails to play at all.
+      style={{
+        backgroundImage:
+          'radial-gradient(120% 90% at 30% 70%, rgba(76,82,162,0.55) 0%, rgba(28,40,87,0.35) 35%, rgba(0,0,0,0) 70%)',
+      }}
+    >
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
