@@ -41,10 +41,12 @@ function BakeryPreview() {
           </div>
         </div>
       </div>
+      {/* Light panel mirrors the real login screen, so its ink stays dark
+          regardless of the site theme. */}
       <div className="flex-1 bg-[#FAF7F2] p-5 hidden sm:flex flex-col justify-center gap-2.5">
-        <p className="font-display text-xs font-semibold text-ink mb-1">Iniciá sesión</p>
-        <div className="h-7 rounded-md bg-white border border-ink/10" />
-        <div className="h-7 rounded-md bg-white border border-ink/10" />
+        <p className="font-display text-xs font-semibold text-[#1a0f09] mb-1">Iniciá sesión</p>
+        <div className="h-7 rounded-md bg-white border border-black/10" />
+        <div className="h-7 rounded-md bg-white border border-black/10" />
         <div className="h-7 rounded-md bg-[#1a0f09] mt-1" />
       </div>
     </div>
