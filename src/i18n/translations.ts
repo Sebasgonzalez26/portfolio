@@ -105,6 +105,10 @@ export interface Translation {
     formPlaceholderMessage: string
     formSubmit: string
     formSent: string
+    formCardTitle: string
+    formCardDescription: string
+    connectTitle: string
+    availabilityTitle: string
   }
   footer: {
     builtWith: string
@@ -302,6 +306,11 @@ export const translations: Record<Language, Translation> = {
       formPlaceholderMessage: 'Contame sobre la oportunidad...',
       formSubmit: 'Enviar mensaje',
       formSent: '¡Mensaje enviado!',
+      formCardTitle: 'Contactame',
+      formCardDescription:
+        'Escribime si querés colaborar, conversar sobre una oportunidad o simplemente saludar.',
+      connectTitle: 'Dónde encontrarme',
+      availabilityTitle: 'Estado actual',
     },
     footer: {
       builtWith: 'Construido con React, TypeScript y Tailwind CSS',
@@ -497,6 +506,11 @@ export const translations: Record<Language, Translation> = {
       formPlaceholderMessage: 'Tell me about the opportunity...',
       formSubmit: 'Send message',
       formSent: 'Message sent!',
+      formCardTitle: 'Get in touch',
+      formCardDescription:
+        'Reach out if you want to collaborate, talk about an opportunity, or simply say hello.',
+      connectTitle: 'Where to find me',
+      availabilityTitle: 'Current status',
     },
     footer: {
       builtWith: 'Built with React, TypeScript & Tailwind CSS',
