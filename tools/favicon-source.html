@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:transparent}
+
+  /* Rendered at 512 and downscaled, so every size stays sharp. */
+  .tile{
+    width:512px;height:512px;
+    background:#000;
+    border-radius:112px;
+    box-shadow:inset 0 0 0 10px rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .mark{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:212px;
+    letter-spacing:-12px;
+    color:#fff;
+    line-height:1;
+    /* Subpixel antialiasing bakes coloured fringes into the PNG, which look
+       dirty on a black-and-white mark. Promoting the text to its own
+       compositing layer makes Chrome fall back to grayscale AA. */
+    -webkit-font-smoothing:antialiased;
+    will-change:opacity;
+    opacity:.999;
+    /* Optical centering: the cap-height sits high in the em box. */
+    transform:translateY(-4px);
+  }
+</style>
+</head>
+<body>
+  <div class="tile"><span class="mark">SGR</span></div>
+</body>
+</html>
