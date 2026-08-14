@@ -16,6 +16,21 @@ export interface OtherProjectItem {
   description: string
 }
 
+export interface ProjectCard {
+  /** Matches a preview renderer in Portfolio.tsx */
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  liveUrl?: string
+  repoUrl?: string
+}
+
+export interface StackItem {
+  name: string
+  category: string
+}
+
 export interface Translation {
   nav: {
     home: string
@@ -53,14 +68,13 @@ export interface Translation {
   projects: {
     eyebrow: string
     heading: string
-    featured: {
-      title: string
-      subtitle: string
-      description: string
-      tags: string[]
-      liveLabel: string
-      codeLabel: string
-    }
+    subtitle: string
+    tabs: { projects: string; certificates: string; stack: string }
+    items: ProjectCard[]
+    stack: StackItem[]
+    liveLabel: string
+    codeLabel: string
+    noLinkLabel: string
     otherHeading: string
     otherItems: OtherProjectItem[]
   }
@@ -126,7 +140,7 @@ export const translations: Record<Language, Translation> = {
     },
     education: {
       eyebrow: 'FORMACIÓN',
-      heading: 'Educación y certificaciones',
+      heading: 'Educación',
       items: [
         {
           title: 'Universidad Fidélitas',
@@ -148,16 +162,47 @@ export const translations: Record<Language, Translation> = {
     },
     projects: {
       eyebrow: 'PROYECTOS',
-      heading: 'Lo que he construido',
-      featured: {
-        title: "David's Bakery",
-        subtitle: 'Sistema de gestión full-stack para pastelería',
-        description:
-          'Aplicación en producción para un negocio real: dos APIs en ASP.NET Core 8, base de datos SQL Server con 36 stored procedures, frontend en React + TypeScript + Vite, autenticación JWT y CI/CD con GitHub Actions.',
-        tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
-        liveLabel: 'Ver sitio en vivo',
-        codeLabel: 'Ver código',
-      },
+      heading: 'Proyectos',
+      subtitle: 'Un recorrido por lo que he construido, mis certificaciones y las tecnologías que uso.',
+      tabs: { projects: 'Proyectos', certificates: 'Certificaciones', stack: 'Stack técnico' },
+      items: [
+        {
+          id: 'bakery',
+          title: "David's Bakery",
+          description:
+            'Sistema de gestión full-stack en producción para una pastelería real: dos APIs en ASP.NET Core 8, base de datos SQL Server con 36 stored procedures, frontend en React + TypeScript + Vite, autenticación JWT y CI/CD con GitHub Actions.',
+          tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
+          liveUrl: 'https://www.davisbakery.store',
+          repoUrl: 'https://github.com/Sebasgonzalez26/david-s-bakery-',
+        },
+        {
+          id: 'portfolio',
+          title: 'Portafolio personal',
+          description:
+            'Este mismo sitio: una sola página en React + TypeScript con Vite, animaciones en Framer Motion, sistema de idiomas propio y despliegue continuo en Vercel.',
+          tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+          repoUrl: 'https://github.com/Sebasgonzalez26/portfolio',
+        },
+      ],
+      stack: [
+        { name: 'C# / .NET', category: 'Backend' },
+        { name: 'ASP.NET Core', category: 'Backend' },
+        { name: 'Node.js', category: 'Backend' },
+        { name: 'Python', category: 'Backend' },
+        { name: 'React', category: 'Frontend' },
+        { name: 'TypeScript', category: 'Frontend' },
+        { name: 'Tailwind CSS', category: 'Frontend' },
+        { name: 'SQL Server', category: 'Bases de datos' },
+        { name: 'MongoDB', category: 'Bases de datos' },
+        { name: 'Azure', category: 'Cloud & DevOps' },
+        { name: 'Git / GitHub', category: 'Cloud & DevOps' },
+        { name: 'Pentaho ETL', category: 'Datos & BI' },
+        { name: 'Power BI', category: 'Datos & BI' },
+        { name: 'Tableau', category: 'Datos & BI' },
+      ],
+      liveLabel: 'Ver en vivo',
+      codeLabel: 'Ver código',
+      noLinkLabel: 'Repositorio privado',
       otherHeading: 'Otras cosas que he construido',
       otherItems: [
         {
@@ -240,7 +285,7 @@ export const translations: Record<Language, Translation> = {
     },
     education: {
       eyebrow: 'EDUCATION',
-      heading: 'Education & certifications',
+      heading: 'Education',
       items: [
         {
           title: 'Universidad Fidélitas',
@@ -262,16 +307,47 @@ export const translations: Record<Language, Translation> = {
     },
     projects: {
       eyebrow: 'PROJECTS',
-      heading: "What I've built",
-      featured: {
-        title: "David's Bakery",
-        subtitle: 'Full-stack bakery management system',
-        description:
-          'Production application built for a real business: two REST APIs in ASP.NET Core 8, a SQL Server database with 36 stored procedures, a React + TypeScript + Vite frontend, JWT authentication and GitHub Actions CI/CD.',
-        tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
-        liveLabel: 'View live site',
-        codeLabel: 'View code',
-      },
+      heading: 'Projects',
+      subtitle: "A walk through what I've built, my certifications and the tools I work with.",
+      tabs: { projects: 'Projects', certificates: 'Certificates', stack: 'Tech stack' },
+      items: [
+        {
+          id: 'bakery',
+          title: "David's Bakery",
+          description:
+            'Full-stack management system running in production for a real bakery: two ASP.NET Core 8 APIs, a SQL Server database with 36 stored procedures, a React + TypeScript + Vite frontend, JWT authentication and GitHub Actions CI/CD.',
+          tags: ['C#', 'ASP.NET Core 8', 'SQL Server', 'React', 'TypeScript', 'Azure'],
+          liveUrl: 'https://www.davisbakery.store',
+          repoUrl: 'https://github.com/Sebasgonzalez26/david-s-bakery-',
+        },
+        {
+          id: 'portfolio',
+          title: 'Personal portfolio',
+          description:
+            'This very site: a single page in React + TypeScript with Vite, Framer Motion animations, a hand-rolled language system and continuous deployment on Vercel.',
+          tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+          repoUrl: 'https://github.com/Sebasgonzalez26/portfolio',
+        },
+      ],
+      stack: [
+        { name: 'C# / .NET', category: 'Backend' },
+        { name: 'ASP.NET Core', category: 'Backend' },
+        { name: 'Node.js', category: 'Backend' },
+        { name: 'Python', category: 'Backend' },
+        { name: 'React', category: 'Frontend' },
+        { name: 'TypeScript', category: 'Frontend' },
+        { name: 'Tailwind CSS', category: 'Frontend' },
+        { name: 'SQL Server', category: 'Databases' },
+        { name: 'MongoDB', category: 'Databases' },
+        { name: 'Azure', category: 'Cloud & DevOps' },
+        { name: 'Git / GitHub', category: 'Cloud & DevOps' },
+        { name: 'Pentaho ETL', category: 'Data & BI' },
+        { name: 'Power BI', category: 'Data & BI' },
+        { name: 'Tableau', category: 'Data & BI' },
+      ],
+      liveLabel: 'View live',
+      codeLabel: 'View code',
+      noLinkLabel: 'Private repository',
       otherHeading: "Other things I've built",
       otherItems: [
         {
