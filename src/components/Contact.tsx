@@ -1,29 +1,17 @@
 import { useState } from 'react'
-import { Mail, Send, MapPin, CheckCircle } from 'lucide-react'
+import { CheckCircle, Mail, MapPin, MessageSquare, Send, User } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons'
 import { useLanguage } from '../i18n/useLanguage'
 import Reveal from './Reveal'
+
+const EMAIL = 'jg1829016@gmail.com'
+const LINKEDIN = 'https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297'
+const GITHUB = 'https://github.com/Sebasgonzalez26'
 
 export default function Contact() {
   const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
-
-  const contactLinks = [
-    { icon: Mail, label: t.contact.formEmail, value: 'jg1829016@gmail.com', href: 'mailto:jg1829016@gmail.com' },
-    {
-      icon: GithubIcon,
-      label: 'GitHub',
-      value: 'github.com/Sebasgonzalez26',
-      href: 'https://github.com/Sebasgonzalez26',
-    },
-    {
-      icon: LinkedinIcon,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/sebastián-josué-gonzález',
-      href: 'https://www.linkedin.com/in/sebastián-josué-gonzález-68a97b297',
-    },
-  ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -31,130 +19,213 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio contact - ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:jg1829016@gmail.com?subject=${subject}&body=${body}`
+    const subject = encodeURIComponent(`Portfolio — ${form.name}`)
+    const body = encodeURIComponent(`${form.message}\n\n—\n${form.name}\n${form.email}`)
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
     setSent(true)
     setTimeout(() => setSent(false), 4000)
   }
 
+  const fieldClass =
+    'w-full bg-white/[0.03] border border-white/12 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm placeholder-white/35 focus:outline-none focus:border-white/40 transition-colors'
+
   return (
-    <section id="contact" className="py-24 px-6 bg-paper-soft">
-      <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-sky mb-4">
-          {t.contact.eyebrow}
-        </p>
-        <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink mb-4">
-          {t.contact.heading}
-        </h2>
-        <p className="text-ink-soft text-base leading-relaxed max-w-xl mb-12">
-          {t.contact.description}
-        </p>
+    <section id="contact" className="relative py-24 px-6 bg-paper-soft overflow-hidden">
+      {/* Blueprint grid */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 30%, transparent 25%, rgba(0,0,0,0.8) 100%)',
+        }}
+      />
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left: info */}
+      <div className="relative max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+              {t.contact.heading}
+            </h2>
+            <p className="text-white/50 text-sm sm:text-base max-w-2xl mx-auto">
+              {t.contact.description}
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Form card */}
           <Reveal>
-            <div className="flex items-center gap-2 text-ink-soft text-sm mb-8">
-              <MapPin size={15} className="text-accent-purple" />
-              <span>{t.contact.location}</span>
-            </div>
-
-            <div className="space-y-3 mb-8">
-              {contactLinks.map(({ icon: Icon, label, value, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith('mailto') ? undefined : '_blank'}
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-paper border border-ink/10 rounded-xl hover:border-ink/30 transition-colors group"
-                >
-                  <div className="p-2.5 bg-paper-soft rounded-lg border border-ink/10">
-                    <Icon size={16} className="text-ink" />
-                  </div>
-                  <div>
-                    <p className="text-ink-faint text-xs mb-0.5">{label}</p>
-                    <p className="text-ink text-sm font-medium">{value}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <div className="bg-paper border border-ink/10 rounded-xl p-5">
-              <p className="font-mono text-accent-cyan text-xs uppercase tracking-wide mb-2">
-                {t.hero.available}
+            <div className="h-full border border-white/12 rounded-3xl p-7 sm:p-9 bg-white/[0.02]">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
+                {t.contact.formCardTitle}
+              </h3>
+              <p className="text-white/50 text-sm leading-relaxed mb-7">
+                {t.contact.formCardDescription}
               </p>
-              <p className="text-ink-soft text-sm leading-relaxed">{t.contact.availability}</p>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="relative">
+                  <label htmlFor="name" className="sr-only">
+                    {t.contact.formName}
+                  </label>
+                  <User
+                    size={17}
+                    aria-hidden="true"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
+                  />
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    placeholder={t.contact.formPlaceholderName}
+                    className={fieldClass}
+                  />
+                </div>
+
+                <div className="relative">
+                  <label htmlFor="email" className="sr-only">
+                    {t.contact.formEmail}
+                  </label>
+                  <Mail
+                    size={17}
+                    aria-hidden="true"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
+                  />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder={t.contact.formPlaceholderEmail}
+                    className={fieldClass}
+                  />
+                </div>
+
+                <div className="relative">
+                  <label htmlFor="message" className="sr-only">
+                    {t.contact.formMessage}
+                  </label>
+                  <MessageSquare
+                    size={17}
+                    aria-hidden="true"
+                    className="absolute left-4 top-4 text-white/40"
+                  />
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    placeholder={t.contact.formPlaceholderMessage}
+                    className={`${fieldClass} resize-none`}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium py-3.5 rounded-xl hover:bg-white/90 transition-colors"
+                >
+                  {sent ? (
+                    <>
+                      <CheckCircle size={17} />
+                      {t.contact.formSent}
+                    </>
+                  ) : (
+                    <>
+                      <Send size={17} />
+                      {t.contact.formSubmit}
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </Reveal>
 
-          {/* Right: form */}
+          {/* Connect card */}
           <Reveal delay={0.1}>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-ink-soft text-sm mb-2">
-                  {t.contact.formName}
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  placeholder={t.contact.formPlaceholderName}
-                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors"
-                />
-              </div>
+            <div className="h-full border border-white/12 rounded-3xl p-7 sm:p-9 bg-white/[0.02] flex flex-col">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
+                {t.contact.connectTitle}
+              </h3>
+              <p className="flex items-center gap-2 text-white/50 text-sm mb-7">
+                <MapPin size={15} aria-hidden="true" />
+                {t.contact.location}
+              </p>
 
-              <div>
-                <label htmlFor="email" className="block text-ink-soft text-sm mb-2">
-                  {t.contact.formEmail}
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  placeholder={t.contact.formPlaceholderEmail}
-                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-ink-soft text-sm mb-2">
-                  {t.contact.formMessage}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  placeholder={t.contact.formPlaceholderMessage}
-                  className="w-full bg-paper border border-ink/15 rounded-xl px-4 py-3 text-ink text-sm placeholder-ink-faint focus:outline-none focus:border-accent-purple/60 transition-colors resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-ink hover:bg-accent-purple text-paper font-semibold py-3 rounded-xl transition-colors duration-200"
+              {/* Primary: email */}
+              <a
+                href={`mailto:${EMAIL}`}
+                className="group flex items-center gap-4 border border-white/12 rounded-2xl p-5 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06] transition-colors mb-3"
               >
-                {sent ? (
-                  <>
-                    <CheckCircle size={16} />
-                    {t.contact.formSent}
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    {t.contact.formSubmit}
-                  </>
-                )}
-              </button>
-            </form>
+                <span className="p-3 rounded-xl border border-white/12 shrink-0">
+                  <Mail size={20} className="text-white/80" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-white font-medium">Email</span>
+                  <span className="block text-white/45 text-sm truncate">{EMAIL}</span>
+                </span>
+              </a>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <a
+                  href={LINKEDIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 border border-white/12 rounded-2xl p-5 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06] transition-colors"
+                >
+                  <span className="shrink-0">
+                    <LinkedinIcon size={20} className="text-white/80" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-white font-medium">LinkedIn</span>
+                    <span className="block text-white/45 text-xs truncate">
+                      sebastián-josué-gonzález
+                    </span>
+                  </span>
+                </a>
+
+                <a
+                  href={GITHUB}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 border border-white/12 rounded-2xl p-5 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06] transition-colors"
+                >
+                  <span className="shrink-0">
+                    <GithubIcon size={20} className="text-white/80" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-white font-medium">GitHub</span>
+                    <span className="block text-white/45 text-xs truncate">Sebasgonzalez26</span>
+                  </span>
+                </a>
+              </div>
+
+              {/* Availability */}
+              <div className="mt-auto pt-6">
+                <div className="border border-white/12 rounded-2xl p-5 bg-white/[0.03]">
+                  <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
+                    {t.contact.availabilityTitle}
+                  </p>
+                  <p className="text-white/60 text-sm leading-relaxed">{t.contact.availability}</p>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>

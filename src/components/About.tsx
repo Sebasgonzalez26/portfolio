@@ -138,29 +138,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Capabilities */}
-        <Reveal>
-          <div className="mt-24">
-            <p className="font-mono text-[11px] tracking-[0.35em] uppercase text-white/45 mb-6">
-              {t.capabilities.eyebrow}
-            </p>
-            <h3 className="font-display text-3xl md:text-4xl font-semibold text-white mb-8">
-              {t.capabilities.heading}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {t.capabilities.categories.map((category) => (
-                <span
-                  key={category}
-                  className="font-mono text-[11px] uppercase tracking-[0.15em] border border-white/15 text-white/70 rounded-full px-4 py-2 hover:border-white/40 hover:text-white transition-colors"
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Education & certifications */}
+        {/* Education — certifications and stack live in the projects tabs */}
         <Reveal>
           <div className="mt-24">
             <p className="font-mono text-[11px] tracking-[0.35em] uppercase text-white/45 mb-6">
@@ -170,36 +148,22 @@ export default function About() {
               {t.education.heading}
             </h3>
 
-            <div className="grid md:grid-cols-2 gap-10">
-              <div className="space-y-5">
-                {t.education.items.map((item) => (
-                  <div key={item.title} className="flex gap-4">
-                    <div className="p-2 rounded-lg border border-white/12 h-fit">
-                      <GraduationCap size={16} className="text-white/70" />
-                    </div>
-                    <div>
-                      <p className="text-white font-medium">{item.title}</p>
-                      <p className="font-mono text-xs text-white/40 mb-1">{item.period}</p>
-                      <p className="text-white/55 text-sm">{item.description}</p>
-                    </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {t.education.items.map((item) => (
+                <div
+                  key={item.title}
+                  className="flex gap-4 border border-white/12 rounded-xl p-5 bg-white/[0.02]"
+                >
+                  <div className="p-2 rounded-lg border border-white/12 h-fit shrink-0">
+                    <GraduationCap size={16} className="text-white/70" />
                   </div>
-                ))}
-              </div>
-
-              <div className="space-y-3">
-                {t.education.certifications.map((cert) => (
-                  <div
-                    key={cert.title}
-                    className="flex items-center justify-between gap-4 border border-white/12 rounded-xl px-4 py-3 bg-white/[0.02]"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Award size={15} className="text-white/60 shrink-0" />
-                      <p className="text-white text-sm font-medium">{cert.title}</p>
-                    </div>
-                    <span className="font-mono text-xs text-white/40 shrink-0">{cert.year}</span>
+                  <div>
+                    <p className="text-white font-medium">{item.title}</p>
+                    <p className="font-mono text-xs text-white/40 mb-1">{item.period}</p>
+                    <p className="text-white/55 text-sm">{item.description}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
