@@ -2,11 +2,7 @@ import { ArrowUpRight, Award, Code2, FileText, Globe, GraduationCap } from 'luci
 import { useLanguage } from '../i18n/useLanguage'
 import Reveal from './Reveal'
 
-const stats = [
-  { icon: Code2, value: '1', label: 'Proyecto en producción' },
-  { icon: Award, value: '4', label: 'Certificaciones' },
-  { icon: Globe, value: 'C1', label: 'Inglés certificado' },
-]
+const statIcons = [Code2, Award, Globe]
 
 /** Concentric-ring frame standing in for a portrait. */
 function Monogram() {
@@ -51,7 +47,7 @@ export default function About() {
       <div className="relative max-w-6xl mx-auto">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.35em] uppercase text-white/45 mb-8">
-            Sobre mí
+            {t.nav.currently}
           </p>
         </Reveal>
 
@@ -80,7 +76,7 @@ export default function About() {
 
             <blockquote className="border border-white/12 rounded-lg px-5 py-3.5 inline-block mb-8 bg-white/[0.02]">
               <p className="italic text-white/65 text-sm">
-                «Construyo software real que resuelve problemas reales.»
+                {t.currently.quote}
               </p>
             </blockquote>
 
@@ -91,7 +87,7 @@ export default function About() {
                 className="inline-flex items-center gap-2 bg-white text-black text-sm font-medium px-5 py-3 rounded-lg hover:bg-white/90 transition-colors"
               >
                 <FileText size={16} />
-                Descargar CV
+                {t.currently.downloadCv}
               </a>
               <button
                 onClick={() =>
@@ -103,7 +99,7 @@ export default function About() {
                   size={16}
                   className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
-                Ver proyectos
+                {t.currently.viewProjects}
               </button>
             </div>
           </Reveal>
@@ -115,7 +111,9 @@ export default function About() {
 
         {/* Stat cards */}
         <div className="grid sm:grid-cols-3 gap-4 mt-16">
-          {stats.map(({ icon: Icon, value, label }, i) => (
+          {t.currently.stats.map(({ value, label }, i) => {
+            const Icon = statIcons[i % statIcons.length]
+            return (
             <Reveal key={label} delay={i * 0.08}>
               <div className="group h-full border border-white/12 rounded-xl p-5 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.04] transition-colors">
                 <div className="flex items-start justify-between mb-10">
@@ -135,7 +133,8 @@ export default function About() {
                 </div>
               </div>
             </Reveal>
-          ))}
+            )
+          })}
         </div>
 
         {/* Education — certifications and stack live in the projects tabs */}

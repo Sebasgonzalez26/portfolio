@@ -2,19 +2,22 @@ import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
-
-const navLinks = [
-  { label: 'Inicio', href: '#hero' },
-  { label: 'Sobre mí', href: '#currently' },
-  { label: 'Proyectos', href: '#work' },
-]
-
-const contactLink = { label: 'Contacto', href: '#contact' }
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { pathname } = useLocation()
   const navigate = useNavigate()
+  const { language, toggleLanguage, t } = useLanguage()
+
+  const navLinks = [
+    { label: t.nav.home, href: '#hero' },
+    { label: t.nav.currently, href: '#currently' },
+    { label: t.nav.work, href: '#work' },
+  ]
+
+  const contactLink = { label: t.nav.contact, href: '#contact' }
+  const otherLanguage = language === 'es' ? 'EN' : 'ES'
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault()
@@ -67,6 +70,16 @@ export default function Navbar() {
                 {contactLink.label}
                 <ArrowUpRight size={18} />
               </a>
+
+              <span aria-hidden="true" className="w-px h-5 bg-white/15" />
+
+              <button
+                onClick={toggleLanguage}
+                aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a español'}
+                className="font-mono text-sm tracking-[0.12em] text-white/60 hover:text-white transition-colors"
+              >
+                {otherLanguage}
+              </button>
             </div>
           </div>
         </div>
@@ -101,6 +114,14 @@ export default function Navbar() {
                   {label}
                 </a>
               ))}
+
+              <button
+                onClick={toggleLanguage}
+                aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a español'}
+                className="self-start mt-1 font-mono text-sm tracking-[0.12em] text-white/70 hover:text-white border border-white/20 rounded-full px-4 py-2 transition-colors"
+              >
+                {otherLanguage}
+              </button>
             </div>
           </motion.div>
         )}

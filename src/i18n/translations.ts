@@ -52,6 +52,8 @@ export interface Translation {
     ctaPrimary: string
     ctaSecondary: string
     available: string
+    /** Single-line proof point shown above the fold. */
+    stat: string
   }
   currently: {
     eyebrow: string
@@ -59,6 +61,10 @@ export interface Translation {
     paragraph: string
     linkText: string
     paragraphEnd: string
+    quote: string
+    downloadCv: string
+    viewProjects: string
+    stats: { value: string; label: string }[]
   }
   capabilities: {
     eyebrow: string
@@ -120,7 +126,7 @@ export const translations: Record<Language, Translation> = {
   es: {
     nav: {
       home: 'Inicio',
-      currently: 'Ahora',
+      currently: 'Sobre mí',
       work: 'Proyectos',
       contact: 'Contacto',
     },
@@ -133,6 +139,7 @@ export const translations: Record<Language, Translation> = {
       ctaPrimary: 'Ver lo que estoy construyendo',
       ctaSecondary: 'Hablemos',
       available: 'Abierto a oportunidades en desarrollo de software',
+      stat: 'Un sistema en producción, usado a diario por un negocio real.',
     },
     currently: {
       eyebrow: 'AHORA MISMO',
@@ -142,6 +149,14 @@ export const translations: Record<Language, Translation> = {
       linkText: "David's Bakery",
       paragraphEnd:
         ', un sistema de gestión que un negocio real usa todos los días para reemplazar hojas de cálculo y cuadernos. Hoy busco sumarme a un equipo donde pueda seguir construyendo software de este tipo.',
+      quote: '«Construyo software real que resuelve problemas reales.»',
+      downloadCv: 'Descargar CV',
+      viewProjects: 'Ver proyectos',
+      stats: [
+        { value: '1', label: 'Proyecto en producción' },
+        { value: '4', label: 'Certificaciones' },
+        { value: 'C1', label: 'Inglés certificado' },
+      ],
     },
     capabilities: {
       eyebrow: 'CAPACIDADES',
@@ -320,7 +335,7 @@ export const translations: Record<Language, Translation> = {
   en: {
     nav: {
       home: 'Home',
-      currently: 'Now',
+      currently: 'About',
       work: 'Work',
       contact: 'Contact',
     },
@@ -333,6 +348,7 @@ export const translations: Record<Language, Translation> = {
       ctaPrimary: "See what I'm building",
       ctaSecondary: "Let's talk",
       available: 'Open to software development opportunities',
+      stat: 'A system in production, used every day by a real business.',
     },
     currently: {
       eyebrow: 'RIGHT NOW',
@@ -342,6 +358,14 @@ export const translations: Record<Language, Translation> = {
       linkText: "David's Bakery",
       paragraphEnd:
         ", a management system a real business uses every day to replace spreadsheets and notebooks. I'm now looking to join a team where I can keep building software like this.",
+      quote: '"I build real software that solves real problems."',
+      downloadCv: 'Download CV',
+      viewProjects: 'View projects',
+      stats: [
+        { value: '1', label: 'Project in production' },
+        { value: '4', label: 'Certifications' },
+        { value: 'C1', label: 'Certified English' },
+      ],
     },
     capabilities: {
       eyebrow: 'CAPABILITIES',
