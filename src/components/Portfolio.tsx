@@ -41,10 +41,12 @@ function BakeryPreview() {
           </div>
         </div>
       </div>
+      {/* Light panel mirrors the real login screen, so its ink stays dark
+          regardless of the site theme. */}
       <div className="flex-1 bg-[#FAF7F2] p-5 hidden sm:flex flex-col justify-center gap-2.5">
-        <p className="font-display text-xs font-semibold text-ink mb-1">Iniciá sesión</p>
-        <div className="h-7 rounded-md bg-white border border-ink/10" />
-        <div className="h-7 rounded-md bg-white border border-ink/10" />
+        <p className="font-display text-xs font-semibold text-[#1a0f09] mb-1">Iniciá sesión</p>
+        <div className="h-7 rounded-md bg-white border border-black/10" />
+        <div className="h-7 rounded-md bg-white border border-black/10" />
         <div className="h-7 rounded-md bg-[#1a0f09] mt-1" />
       </div>
     </div>
@@ -67,7 +69,7 @@ export default function Portfolio() {
 
         {/* Featured project */}
         <Reveal className="mb-20">
-          <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div className="border border-ink/10 rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.06)] transition-all duration-300">
             <BakeryPreview />
 
           <div>

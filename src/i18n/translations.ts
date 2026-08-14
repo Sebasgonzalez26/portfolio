@@ -101,16 +101,16 @@ export const translations: Record<Language, Translation> = {
         'Desarrollador full-stack enfocado en C# (.NET), React/TypeScript e ingeniería de datos. Construyo APIs, bases de datos e interfaces bajo arquitectura limpia, y las llevo a producción en la nube.',
       ctaPrimary: 'Ver lo que estoy construyendo',
       ctaSecondary: 'Hablemos',
-      available: 'Disponible para roles junior en desarrollo',
+      available: 'Abierto a oportunidades en desarrollo de software',
     },
     currently: {
       eyebrow: 'AHORA MISMO',
       heading: 'En qué ando',
       paragraph:
-        'Estoy en el último tramo de Ingeniería en Sistemas en la Universidad Fidélitas, mientras trabajo en soporte financiero en Concentrix (equipo Goldman Sachs / Apple Card). En paralelo construí y mantengo',
+        'Estoy en el último tramo de Ingeniería en Sistemas en la Universidad Fidélitas y trabajo como desarrollador independiente, llevando mis propios proyectos de punta a punta: base de datos, API, interfaz y despliegue. Así construí y mantengo',
       linkText: "David's Bakery",
       paragraphEnd:
-        ', un sistema de gestión que un negocio real usa todos los días para reemplazar hojas de cálculo y cuadernos.',
+        ', un sistema de gestión que un negocio real usa todos los días para reemplazar hojas de cálculo y cuadernos. Hoy busco sumarme a un equipo donde pueda seguir construyendo software de este tipo.',
     },
     capabilities: {
       eyebrow: 'CAPACIDADES',
@@ -184,7 +184,7 @@ export const translations: Record<Language, Translation> = {
       heading: 'Hablemos',
       description: '¿Tenés una oportunidad, un proyecto o simplemente querés charlar? Estoy disponible.',
       availability:
-        'Estudiante avanzado en Ingeniería de Sistemas, abierto a pasantías, trabajos part-time o posiciones junior en desarrollo backend o data.',
+        'Estudiante avanzado de Ingeniería en Sistemas y desarrollador independiente. Busco sumarme a un equipo de desarrollo, ya sea en backend, frontend o data.',
       location: 'San Antonio de Coronado, Costa Rica',
       formName: 'Nombre',
       formEmail: 'Email',
@@ -215,16 +215,16 @@ export const translations: Record<Language, Translation> = {
         'Full-stack developer focused on C# (.NET), React/TypeScript and data engineering. I build APIs, databases and interfaces under clean architecture, and ship them to production in the cloud.',
       ctaPrimary: "See what I'm building",
       ctaSecondary: "Let's talk",
-      available: 'Open to junior developer roles',
+      available: 'Open to software development opportunities',
     },
     currently: {
       eyebrow: 'RIGHT NOW',
       heading: "What I'm up to",
       paragraph:
-        "I'm in the final stretch of my Systems Engineering degree at Universidad Fidélitas, while working financial support at Concentrix (Goldman Sachs / Apple Card team). Alongside that I built and maintain",
+        "I'm in the final stretch of my Systems Engineering degree at Universidad Fidélitas and work as an independent developer, taking my own projects end to end: database, API, interface and deployment. That's how I built and maintain",
       linkText: "David's Bakery",
       paragraphEnd:
-        ', a management system a real business uses every day to replace spreadsheets and notebooks.',
+        ", a management system a real business uses every day to replace spreadsheets and notebooks. I'm now looking to join a team where I can keep building software like this.",
     },
     capabilities: {
       eyebrow: 'CAPABILITIES',
@@ -298,7 +298,7 @@ export const translations: Record<Language, Translation> = {
       heading: "Let's talk",
       description: 'Got an opportunity, a project, or just want to chat? I\'m available.',
       availability:
-        'Advanced Systems Engineering student, open to internships, part-time work or junior roles in backend or data development.',
+        'Advanced Systems Engineering student and independent developer. Looking to join a development team, whether in backend, frontend or data.',
       location: 'San Antonio de Coronado, Costa Rica',
       formName: 'Name',
       formEmail: 'Email',

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,10 +8,15 @@
   scroll-behavior: smooth;
 }
 
+/* Keep section headings clear of the fixed navbar when jumping via nav links. */
+html {
+  scroll-padding-top: 7rem;
+}
+
 body {
   margin: 0;
-  background-color: #ffffff;
-  color: #111111;
+  background-color: #000000;
+  color: #ffffff;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -21,17 +26,17 @@ body {
 }
 
 ::selection {
-  background-color: #2ac4ea;
-  color: #111111;
+  background-color: #3054ff;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #111111;
+  background: #3054ff;
   border-radius: 3px;
 }
